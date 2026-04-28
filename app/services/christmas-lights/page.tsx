@@ -19,17 +19,17 @@ const relatedServices = [
   {
     title: 'Decorative Curbing',
     href: '/services/decorative-curbing',
-    image: '/images/curbing-stamped.jpg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/648969539_1523399962552606_9149390113985786585_n-Y1XefroO2xDRxLWn45sTqhfH1QMFbs.jpg',
   },
   {
     title: 'Rock & Mulch',
     href: '/services/rock-mulch',
-    image: '/images/rock-mulch.jpg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/548334124_1371765371049400_3565142757403817734_n-FmBXxvhFetZUkfphHptQo0VedZ4jfc.jpg',
   },
   {
     title: 'Retaining Walls',
     href: '/services/retaining-walls',
-    image: '/images/retaining-wall.jpg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/487113487_1223360492556556_6443011365999819935_n-iBGS0x56DUkPj2G4cPDVoPO4q3Rdhj.jpg',
   },
 ]
 
@@ -39,7 +39,7 @@ export default function ChristmasLightsPage() {
       title="Christmas Lights Installation"
       subtitle="Seasonal Service"
       description="Make your home the brightest on the block with professional Christmas light installation. We handle everything from design and setup to post-season takedown, so you can enjoy the holiday magic without the hassle."
-      heroImage="/images/christmas-lights.jpg"
+      heroImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/568089380_1401623404730263_7806870534372210605_n-DLlGJruQYS6F4hHpH1KxrC54IWxwBM.jpg"
       benefits={benefits}
       relatedServices={relatedServices}
       content={
@@ -72,7 +72,7 @@ export default function ChristmasLightsPage() {
             </div>
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/images/christmas-lights.jpg"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/487512457_1224791855746753_5516989741700929318_n-RxMIUD4Y61y0jRMCoDAww6CONLDiJ4.jpg"
                 alt="Professional Christmas lights installation"
                 fill
                 className="object-cover"

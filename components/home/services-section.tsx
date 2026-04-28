@@ -11,7 +11,7 @@ const services = [
     title: 'Decorative Curbing',
     description:
       'Our signature service. Permanent concrete borders available in three distinct styles with unlimited color and stamp combinations to match your home.',
-    image: '/images/curbing-dark-stone.jpeg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/648969539_1523399962552606_9149390113985786585_n-Y1XefroO2xDRxLWn45sTqhfH1QMFbs.jpg',
     href: '/services/decorative-curbing',
     featured: true,
   },
@@ -20,7 +20,7 @@ const services = [
     title: 'Rock & Mulch',
     description:
       'Complete landscape bed installation with premium rock or mulch materials that complement your curbing and reduce maintenance.',
-    image: '/images/rock-mulch-new.jpeg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/548334124_1371765371049400_3565142757403817734_n-FmBXxvhFetZUkfphHptQo0VedZ4jfc.jpg',
     href: '/services/rock-mulch',
   },
   {
@@ -28,7 +28,7 @@ const services = [
     title: 'Retaining Walls',
     description:
       'Functional and beautiful stone retaining walls that add dimension to your landscape while preventing soil erosion.',
-    image: '/images/retaining-wall-new.webp',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/487113487_1223360492556556_6443011365999819935_n-iBGS0x56DUkPj2G4cPDVoPO4q3Rdhj.jpg',
     href: '/services/retaining-walls',
   },
   {
@@ -36,7 +36,7 @@ const services = [
     title: 'Christmas Lights',
     description:
       'Professional holiday light installation to make your home shine during the festive season. Full design, installation, and takedown service.',
-    image: '/images/christmas-lights-new.webp',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/568089380_1401623404730263_7806870534372210605_n-DLlGJruQYS6F4hHpH1KxrC54IWxwBM.jpg',
     href: '/services/christmas-lights',
   },
   {
@@ -44,7 +44,7 @@ const services = [
     title: 'Seeding',
     description:
       'Expert lawn seeding services to establish thick, healthy grass that pairs perfectly with your new curbing and landscape design.',
-    image: '/images/seeding-new.webp',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/486163644_1220695759489696_626873201542925766_n-k2qVtZX8JVnAtRSwWM2CLJKrURDhVk.jpg',
     href: '/services/seeding',
   },
 ]

@@ -18,8 +18,8 @@ export function OurStory() {
           >
             <div className="relative rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/images/about-owner.jpg"
-                alt="Owner of Screaming Eagle Curbing"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/aboutus-knp8srwJEi54ltxI9oTDwpTIgTs66w.webp"
+                alt="Screaming Eagle Curbing family"
                 width={600}
                 height={500}
                 className="w-full h-auto object-cover"

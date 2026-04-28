@@ -62,13 +62,12 @@ export function CTASection() {
             </Button>
             <Button
               asChild
-              variant="outline"
               size="lg"
-              className="border-[#1E3A8A] bg-transparent text-[#1E3A8A] hover:bg-black hover:border-black hover:text-white rounded-full px-8 py-6 text-base font-medium transition-colors duration-200"
+              className="bg-black text-white border-2 border-black hover:bg-white hover:text-black rounded-full px-8 py-6 text-base font-medium transition-colors duration-200"
             >
               <a href="tel:+16085551234" className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                (608) 555-1234
+                Call Now
               </a>
             </Button>
           </motion.div>
