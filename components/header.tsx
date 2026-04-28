@@ -99,11 +99,10 @@ export function Header() {
                 <Link
                   href={link.href}
                   className={cn(
-                    'text-base font-medium transition-colors duration-200',
-                    useDarkText
-                      ? 'text-black hover:text-[#1E3A8A]'
-                      : 'text-white hover:text-white/80',
-                    isActive(link.href) && (useDarkText ? 'text-[#1E3A8A] font-semibold' : 'text-white font-semibold')
+                    'text-base font-medium transition-colors duration-200 text-white',
+                    useDarkText && 'text-black hover:text-[#1E3A8A]',
+                    !useDarkText && 'hover:text-white/80',
+                    isActive(link.href) && (useDarkText ? 'text-[#1E3A8A] font-semibold' : 'font-semibold')
                   )}
                 >
                   {link.name}
