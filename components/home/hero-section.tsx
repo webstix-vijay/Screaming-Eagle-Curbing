@@ -24,8 +24,8 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-[1200px] mx-auto px-4 py-24 text-left">
-        <div className="lg:max-w-2xl">
+      <div className="relative z-10 max-w-[1200px] w-full mx-auto px-4 py-24 text-left">
+        <div className="max-w-2xl">
           {/* Trust Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -74,7 +74,7 @@ export function HeroSection() {
             <Button
               asChild
               size="lg"
-              className="bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
+              className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
             >
               <Link href="/contact">Request Free Estimate</Link>
             </Button>
@@ -84,24 +84,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-      >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-white/60 text-sm">Scroll to explore</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white/40 rounded-full flex items-start justify-center pt-2"
-          >
-            <div className="w-1.5 h-3 bg-white/60 rounded-full" />
-          </motion.div>
-        </div>
-      </motion.div>
+
     </section>
   )
 }

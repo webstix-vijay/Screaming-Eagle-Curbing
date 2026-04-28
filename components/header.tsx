@@ -91,14 +91,11 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
-            src="/images/logo.jpeg"
+            src="/images/logo.png"
             alt="Screaming Eagle Curbing"
             width={280}
             height={180}
-            className={cn(
-              'w-auto transition-all duration-300',
-              isScrolled ? 'h-[100px]' : 'h-[130px]'
-            )}
+            className="w-auto h-[100px] transition-all duration-300"
             priority
           />
         </Link>
@@ -111,7 +108,7 @@ export function Header() {
                 <NavigationMenuItem key={link.name}>
                   <NavigationMenuTrigger
                     className={cn(
-                      'bg-transparent text-sm font-medium transition-colors duration-200 px-0 hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent',
+                      '!bg-transparent text-sm font-medium transition-colors duration-200 px-0 hover:!bg-transparent focus:!bg-transparent data-[state=open]:!bg-transparent',
                       useDarkText
                         ? 'text-[#0F172A] hover:text-[#1E3A8A] data-[state=open]:text-[#1E3A8A]'
                         : 'text-white hover:text-white/80 data-[state=open]:text-white/80',
@@ -120,14 +117,14 @@ export function Header() {
                   >
                     {link.name}
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="bg-white border border-[#E2E8F0] shadow-md rounded-md min-w-[200px]">
+                  <NavigationMenuContent className="!bg-[#0F172A] border border-[#1E293B] shadow-lg rounded-md min-w-[200px]">
                     <ul className="p-2">
                       {services.map((service) => (
                         <li key={service.name}>
                           <NavigationMenuLink asChild>
                             <Link
                               href={service.href}
-                              className="block px-4 py-2 text-sm text-[#0F172A] hover:bg-[#F8FAFC] hover:text-[#1E3A8A] rounded-sm transition-colors"
+                              className="block px-4 py-2 text-sm text-white hover:bg-[#1E3A8A] rounded-sm transition-colors"
                             >
                               {service.name}
                             </Link>
@@ -171,7 +168,7 @@ export function Header() {
           </a>
           <Button
             asChild
-            className="bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full px-6 py-2 text-sm font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
+            className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-6 py-2 text-sm font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
           >
             <Link href="/contact">Free Estimate</Link>
           </Button>
@@ -205,11 +202,11 @@ export function Header() {
               <SheetHeader className="p-6 border-b border-[#E2E8F0]">
                 <SheetTitle className="text-left">
                   <Image
-                    src="/images/logo.jpeg"
+                    src="/images/logo.png"
                     alt="Screaming Eagle Curbing"
                     width={140}
                     height={60}
-                    className="h-12 w-auto"
+                    className="h-16 w-auto"
                   />
                 </SheetTitle>
               </SheetHeader>
@@ -253,7 +250,7 @@ export function Header() {
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-[#F8FAFC] border-t border-[#E2E8F0]">
                 <Button
                   asChild
-                  className="w-full bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full py-6 text-base font-semibold uppercase tracking-wide transition-colors duration-200"
+                  className="w-full bg-[#1E3A8A] text-white hover:bg-black rounded-full py-6 text-base font-semibold uppercase tracking-wide transition-colors duration-200"
                 >
                   <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                     Request Free Estimate

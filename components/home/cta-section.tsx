@@ -53,7 +53,7 @@ export function CTASection() {
             <Button
               asChild
               size="lg"
-              className="bg-white text-[#1E3A8A] hover:bg-[#94A3B8] hover:text-white rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-lg transition-colors duration-200"
+              className="bg-white text-[#1E3A8A] hover:bg-black hover:text-white rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-lg transition-colors duration-200"
             >
               <Link href="/contact" className="flex items-center gap-2">
                 Request Free Estimate
@@ -64,7 +64,7 @@ export function CTASection() {
               asChild
               variant="outline"
               size="lg"
-              className="border-white text-white hover:bg-[#94A3B8] hover:border-[#94A3B8] rounded-full px-8 py-6 text-base font-medium transition-colors duration-200"
+              className="border-[#1E3A8A] bg-transparent text-[#1E3A8A] hover:bg-black hover:border-black hover:text-white rounded-full px-8 py-6 text-base font-medium transition-colors duration-200"
             >
               <a href="tel:+16085551234" className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />

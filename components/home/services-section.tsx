@@ -11,7 +11,7 @@ const services = [
     title: 'Decorative Curbing',
     description:
       'Our signature service. Permanent concrete borders available in three distinct styles with unlimited color and stamp combinations to match your home.',
-    image: '/images/curbing-stamped.jpg',
+    image: '/images/curbing-dark-stone.jpeg',
     href: '/services/decorative-curbing',
     featured: true,
   },
@@ -20,7 +20,7 @@ const services = [
     title: 'Rock & Mulch',
     description:
       'Complete landscape bed installation with premium rock or mulch materials that complement your curbing and reduce maintenance.',
-    image: '/images/rock-mulch.jpg',
+    image: '/images/rock-mulch-new.jpeg',
     href: '/services/rock-mulch',
   },
   {
@@ -28,7 +28,7 @@ const services = [
     title: 'Retaining Walls',
     description:
       'Functional and beautiful stone retaining walls that add dimension to your landscape while preventing soil erosion.',
-    image: '/images/retaining-wall.jpg',
+    image: '/images/retaining-wall-new.webp',
     href: '/services/retaining-walls',
   },
   {
@@ -36,7 +36,7 @@ const services = [
     title: 'Christmas Lights',
     description:
       'Professional holiday light installation to make your home shine during the festive season. Full design, installation, and takedown service.',
-    image: '/images/christmas-lights.jpg',
+    image: '/images/christmas-lights-new.webp',
     href: '/services/christmas-lights',
   },
   {
@@ -44,7 +44,7 @@ const services = [
     title: 'Seeding',
     description:
       'Expert lawn seeding services to establish thick, healthy grass that pairs perfectly with your new curbing and landscape design.',
-    image: '/images/seeding.jpg',
+    image: '/images/seeding-new.webp',
     href: '/services/seeding',
   },
 ]

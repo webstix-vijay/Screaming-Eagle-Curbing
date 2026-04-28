@@ -66,14 +66,14 @@ export function ServicePageLayout({
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   asChild
-                  className="bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
+                  className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
                 >
                   <Link href="/contact">Get Free Estimate</Link>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
-                  className="border-white text-white hover:bg-[#94A3B8] hover:border-[#94A3B8] rounded-full px-8 py-6 transition-colors duration-200"
+                  className="border-white text-white hover:bg-black hover:border-black rounded-full px-8 py-6 transition-colors duration-200"
                 >
                   <a href="tel:+16085551234" className="flex items-center gap-2">
                     <Phone className="w-4 h-4" />
@@ -119,7 +119,7 @@ export function ServicePageLayout({
             </p>
             <Button
               asChild
-              className="bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
+              className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
             >
               <Link href="/contact" className="flex items-center gap-2">
                 Request Free Estimate
