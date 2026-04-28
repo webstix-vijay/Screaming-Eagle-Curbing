@@ -99,11 +99,17 @@ export function Header() {
                 <Link
                   href={link.href}
                   className={cn(
-                    'text-base font-medium transition-colors duration-200 text-white',
-                    useDarkText && 'text-black hover:text-[#1E3A8A]',
-                    !useDarkText && 'hover:text-white/80',
-                    isActive(link.href) && (useDarkText ? 'text-[#1E3A8A] font-semibold' : 'font-semibold')
+                    'text-base font-medium transition-colors duration-200',
+                    isActive(link.href) && 'font-semibold'
                   )}
+                  style={{
+                    color: useDarkText 
+                      ? (isActive(link.href) ? '#1E3A8A' : '#000000')
+                      : '#FFFFFF',
+                    WebkitTextFillColor: useDarkText 
+                      ? (isActive(link.href) ? '#1E3A8A' : '#000000')
+                      : '#FFFFFF'
+                  }}
                 >
                   {link.name}
                 </Link>
@@ -116,10 +122,11 @@ export function Header() {
         <div className="hidden lg:flex items-center gap-4">
           <a
             href="tel:+16085551234"
-            className={cn(
-              'flex items-center gap-2 text-lg font-medium transition-colors duration-200',
-              useDarkText ? 'text-black' : 'text-white'
-            )}
+            className="flex items-center gap-2 text-lg font-medium transition-colors duration-200"
+            style={{
+              color: useDarkText ? '#000000' : '#FFFFFF',
+              WebkitTextFillColor: useDarkText ? '#000000' : '#FFFFFF'
+            }}
           >
             <Phone className="w-5 h-5" />
             <span className="hidden xl:inline">(608) 555-1234</span>
