@@ -73,11 +73,11 @@ export function ServicePageLayout({
                 <Button
                   asChild
                   variant="outline"
-                  className="border-white text-white hover:bg-black hover:border-black rounded-full px-8 py-6 transition-colors duration-200"
+                  className="border-white bg-transparent text-white hover:bg-black hover:border-black rounded-full px-8 py-6 transition-colors duration-200"
                 >
-                  <a href="tel:+16085551234" className="flex items-center gap-2">
-                    <Phone className="w-4 h-4" />
-                    Call Now
+                  <a href="tel:+16085551234" className="flex items-center gap-2 text-white">
+                    <Phone className="w-4 h-4 text-white" />
+                    <span className="text-white">Call Now</span>
                   </a>
                 </Button>
               </div>
@@ -91,7 +91,7 @@ export function ServicePageLayout({
             <div className="flex flex-wrap justify-center gap-6 md:gap-12">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-[#166534]" />
+                  <CheckCircle className="w-5 h-5 text-white" />
                   <span className="text-white text-sm font-medium">{benefit}</span>
                 </div>
               ))}

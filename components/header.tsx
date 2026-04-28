@@ -69,16 +69,16 @@ export function Header() {
     if (isScrolled) {
       return 'bg-white/95 backdrop-blur-md shadow-md py-3'
     }
-    // On inside pages, always show solid background for visibility
+    // On inside pages, always show white background for visibility
     if (!isHomePage) {
-      return 'bg-[#0F172A] py-5'
+      return 'bg-white shadow-md py-3'
     }
     // On home page, transparent until scrolled
     return 'bg-transparent py-5'
   }
 
   // Determine if we should use dark text (white background) or light text
-  const useDarkText = isScrolled
+  const useDarkText = isScrolled || !isHomePage
 
   return (
     <header
@@ -95,7 +95,10 @@ export function Header() {
             alt="Screaming Eagle Curbing"
             width={280}
             height={180}
-            className="w-auto h-[100px] transition-all duration-300"
+            className={cn(
+              'w-auto transition-all duration-500 ease-in-out',
+              isScrolled || !isHomePage ? 'h-[70px]' : 'h-[100px]'
+            )}
             priority
           />
         </Link>
@@ -112,19 +115,19 @@ export function Header() {
                       useDarkText
                         ? 'text-[#0F172A] hover:text-[#1E3A8A] data-[state=open]:text-[#1E3A8A]'
                         : 'text-white hover:text-white/80 data-[state=open]:text-white/80',
-                      isActive(link.href) && 'border-b-2 border-[#1E3A8A]'
+                      isActive(link.href) && 'text-[#1E3A8A]'
                     )}
                   >
                     {link.name}
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="!bg-[#0F172A] border border-[#1E293B] shadow-lg rounded-md min-w-[200px]">
+                  <NavigationMenuContent className="!bg-white border border-[#E2E8F0] shadow-lg rounded-md min-w-[200px]">
                     <ul className="p-2">
                       {services.map((service) => (
                         <li key={service.name}>
                           <NavigationMenuLink asChild>
                             <Link
                               href={service.href}
-                              className="block px-4 py-2 text-sm text-white hover:bg-[#1E3A8A] rounded-sm transition-colors"
+                              className="block px-4 py-2 text-sm text-[#0F172A] hover:bg-[#F8FAFC] hover:text-[#1E3A8A] rounded-sm transition-colors"
                             >
                               {service.name}
                             </Link>
@@ -143,7 +146,7 @@ export function Header() {
                       useDarkText
                         ? 'text-[#0F172A] hover:text-[#1E3A8A]'
                         : 'text-white hover:text-white/80',
-                      isActive(link.href) && 'border-b-2 border-[#1E3A8A]'
+                      isActive(link.href) && 'text-[#1E3A8A]'
                     )}
                   >
                     {link.name}
