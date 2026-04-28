@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Menu, Phone, ChevronDown } from 'lucide-react'
+import { Menu, Phone } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Sheet,
@@ -14,32 +14,15 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
 import { cn } from '@/lib/utils'
 
-const services = [
-  { name: 'Decorative Curbing', href: '/services/decorative-curbing' },
-  { name: 'Rock & Mulch', href: '/services/rock-mulch' },
-  { name: 'Retaining Walls', href: '/services/retaining-walls' },
-  { name: 'Christmas Lights', href: '/services/christmas-lights' },
-  { name: 'Seeding', href: '/services/seeding' },
-]
-
 const navLinks = [
   { name: 'Home', href: '/' },
-  { name: 'Services', href: '/services', hasDropdown: true },
+  { name: 'Services', href: '/services' },
   { name: 'Gallery', href: '/gallery' },
   { name: 'About Us', href: '/about' },
   { name: 'Contact', href: '/contact' },
@@ -108,72 +91,25 @@ export function Header() {
           />
         </Link>
 
-        {/* Desktop Navigation with hover dropdown */}
+        {/* Desktop Navigation */}
         <NavigationMenu className="hidden lg:flex">
           <NavigationMenuList className="gap-6">
-            {navLinks.map((link) =>
-              link.hasDropdown ? (
-                <NavigationMenuItem key={link.name}>
-                  <NavigationMenuTrigger
-                    className={cn(
-                      '!bg-transparent text-base font-medium transition-colors duration-200 px-0 hover:!bg-transparent focus:!bg-transparent data-[state=open]:!bg-transparent',
-                      useDarkText
-                        ? 'text-[#0F172A] hover:text-[#1E3A8A] data-[state=open]:text-[#1E3A8A]'
-                        : 'text-white hover:text-white/80 data-[state=open]:text-white/80',
-                      isActive(link.href) && (useDarkText ? 'text-[#1E3A8A]' : 'text-white font-semibold')
-                    )}
-                  >
-                    {link.name}
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent 
-                    className="!bg-white border border-[#E2E8F0] shadow-lg rounded-md min-w-[200px]"
-                    style={{ backgroundColor: '#FFFFFF' }}
-                  >
-                    <ul className="p-2" style={{ backgroundColor: '#FFFFFF' }}>
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            href="/services"
-                            className="block px-4 py-2 text-sm font-semibold hover:bg-[#F8FAFC] rounded-sm transition-colors border-b border-[#E2E8F0] mb-1"
-                            style={{ color: '#1E3A8A', backgroundColor: 'transparent' }}
-                          >
-                            All Services
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                      {services.map((service) => (
-                        <li key={service.name}>
-                          <NavigationMenuLink asChild>
-                            <Link
-                              href={service.href}
-                              className="block px-4 py-2 text-sm hover:bg-[#F8FAFC] rounded-sm transition-colors"
-                              style={{ color: '#1E3A8A', backgroundColor: 'transparent' }}
-                            >
-                              {service.name}
-                            </Link>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              ) : (
-                <NavigationMenuItem key={link.name}>
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      'text-base font-medium transition-colors duration-200',
-                      useDarkText
-                        ? 'text-[#0F172A] hover:text-[#1E3A8A]'
-                        : 'text-white hover:text-white/80',
-                      isActive(link.href) && (useDarkText ? 'text-[#1E3A8A]' : 'text-white font-semibold')
-                    )}
-                  >
-                    {link.name}
-                  </Link>
-                </NavigationMenuItem>
-              )
-            )}
+            {navLinks.map((link) => (
+              <NavigationMenuItem key={link.name}>
+                <Link
+                  href={link.href}
+                  className={cn(
+                    'text-base font-medium transition-colors duration-200',
+                    useDarkText
+                      ? 'text-[#0F172A] hover:text-[#1E3A8A]'
+                      : 'text-white hover:text-white/80',
+                    isActive(link.href) && (useDarkText ? 'text-[#1E3A8A]' : 'text-white font-semibold')
+                  )}
+                >
+                  {link.name}
+                </Link>
+              </NavigationMenuItem>
+            ))}
           </NavigationMenuList>
         </NavigationMenu>
 
@@ -234,45 +170,21 @@ export function Header() {
                 </SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col p-6">
-                {navLinks.map((link) =>
-                  link.hasDropdown ? (
-                    <div key={link.name} className="py-3">
-                      <Link
-                        href="/services"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-sm font-semibold text-[#0F172A] uppercase tracking-wide hover:text-[#1E3A8A] transition-colors"
-                      >
-                        {link.name}
-                      </Link>
-                      <div className="mt-2 ml-4 flex flex-col gap-2">
-                        {services.map((service) => (
-                          <Link
-                            key={service.name}
-                            href={service.href}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-sm text-[#1E3A8A] hover:text-[#0F172A] transition-colors py-1"
-                          >
-                            {service.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ) : (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={cn(
-                        'text-base font-medium py-3 border-b border-[#E2E8F0] transition-colors',
-                        isActive(link.href)
-                          ? 'text-[#1E3A8A]'
-                          : 'text-[#0F172A] hover:text-[#1E3A8A]'
-                      )}
-                    >
-                      {link.name}
-                    </Link>
-                  )
-                )}
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={cn(
+                      'text-base font-medium py-3 border-b border-[#E2E8F0] transition-colors',
+                      isActive(link.href)
+                        ? 'text-[#1E3A8A]'
+                        : 'text-[#0F172A] hover:text-[#1E3A8A]'
+                    )}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
               </nav>
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-[#F8FAFC] border-t border-[#E2E8F0]">
                 <Button
