@@ -8,34 +8,34 @@ import { ArrowRight } from 'lucide-react'
 
 const galleryImages = [
   {
-    src: '/images/curbing-slant.jpg',
-    alt: 'Slant style decorative curbing around flower bed',
-    title: 'Slant Style',
+    src: '/images/curbing-dark-stone.jpeg',
+    alt: 'Dark stone pattern decorative curbing',
+    title: 'Stone Pattern',
   },
   {
-    src: '/images/curbing-mower.jpg',
-    alt: 'Mower style curbing with rounded edge',
-    title: 'Mower Style',
+    src: '/images/curbing-modern-home.jpeg',
+    alt: 'Decorative curbing at modern home',
+    title: 'Modern Home',
   },
   {
-    src: '/images/curbing-stamped.jpg',
-    alt: 'Stamped decorative concrete curbing',
-    title: 'Stamped Pattern',
+    src: '/images/curbing-driveway.webp',
+    alt: 'Curved decorative curbing along driveway',
+    title: 'Driveway Edge',
   },
   {
-    src: '/images/gallery-1.jpg',
-    alt: 'Curved curbing around colorful flower beds',
-    title: 'Curved Design',
+    src: '/images/curbing-brown.jpeg',
+    alt: 'Brown decorative curbing in yard',
+    title: 'Brown Curbing',
   },
   {
-    src: '/images/gallery-2.jpg',
-    alt: 'Tree ring with colored concrete curbing',
-    title: 'Tree Rings',
+    src: '/images/patio-firepit.webp',
+    alt: 'Patio with fire pit and curbing',
+    title: 'Patio Design',
   },
   {
-    src: '/images/gallery-3.jpg',
-    alt: 'Complete front yard curbing installation',
-    title: 'Full Landscape',
+    src: '/images/retaining-wall-new.webp',
+    alt: 'Stone retaining wall',
+    title: 'Retaining Wall',
   },
 ]
 
@@ -116,7 +116,7 @@ export function GalleryPreview() {
         >
           <Button
             asChild
-            className="bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
+            className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
           >
             <Link href="/gallery" className="flex items-center gap-2">
               View Full Gallery

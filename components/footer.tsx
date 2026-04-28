@@ -39,11 +39,11 @@ export function Footer() {
           <div>
             <div className="mb-6">
               <Image
-                src="/images/logo.jpeg"
+                src="/images/logo.png"
                 alt="Screaming Eagle Curbing"
-                width={160}
-                height={70}
-                className="h-16 w-auto brightness-0 invert"
+                width={200}
+                height={80}
+                className="h-20 w-auto"
               />
             </div>
             <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">

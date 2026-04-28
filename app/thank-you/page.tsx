@@ -66,7 +66,7 @@ export default function ThankYouPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
                 asChild
-                className="bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full px-6 py-5 transition-colors duration-200"
+                className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-6 py-5 transition-colors duration-200"
               >
                 <Link href="/" className="flex items-center gap-2">
                   <Home className="w-4 h-4" />
@@ -76,7 +76,7 @@ export default function ThankYouPage() {
               <Button
                 asChild
                 variant="outline"
-                className="border-[#1E3A8A] text-[#1E3A8A] hover:bg-[#94A3B8] hover:text-white hover:border-[#94A3B8] rounded-full px-6 py-5 transition-colors duration-200"
+                className="border-[#1E3A8A] text-[#1E3A8A] hover:bg-black hover:text-white hover:border-black rounded-full px-6 py-5 transition-colors duration-200"
               >
                 <Link href="/gallery" className="flex items-center gap-2">
                   View Gallery
