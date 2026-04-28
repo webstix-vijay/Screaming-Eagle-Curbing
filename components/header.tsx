@@ -102,7 +102,7 @@ export function Header() {
             height={180}
             className={cn(
               'w-auto transition-all duration-500 ease-in-out',
-              isScrolled || !isHomePage ? 'h-[70px]' : 'h-[100px]'
+              isScrolled || !isHomePage ? 'h-[80px]' : 'h-[130px]'
             )}
             priority
           />
@@ -116,7 +116,7 @@ export function Header() {
                 <NavigationMenuItem key={link.name}>
                   <NavigationMenuTrigger
                     className={cn(
-                      '!bg-transparent text-sm font-medium transition-colors duration-200 px-0 hover:!bg-transparent focus:!bg-transparent data-[state=open]:!bg-transparent',
+                      '!bg-transparent text-base font-medium transition-colors duration-200 px-0 hover:!bg-transparent focus:!bg-transparent data-[state=open]:!bg-transparent',
                       useDarkText
                         ? 'text-[#0F172A] hover:text-[#1E3A8A] data-[state=open]:text-[#1E3A8A]'
                         : 'text-white hover:text-white/80 data-[state=open]:text-white/80',
@@ -162,7 +162,7 @@ export function Header() {
                   <Link
                     href={link.href}
                     className={cn(
-                      'text-sm font-medium transition-colors duration-200',
+                      'text-base font-medium transition-colors duration-200',
                       useDarkText
                         ? 'text-[#0F172A] hover:text-[#1E3A8A]'
                         : 'text-white hover:text-white/80',
@@ -182,16 +182,16 @@ export function Header() {
           <a
             href="tel:+16085551234"
             className={cn(
-              'flex items-center gap-2 text-sm font-medium transition-colors duration-200',
+              'flex items-center gap-2 text-lg font-medium transition-colors duration-200',
               useDarkText ? 'text-[#0F172A]' : 'text-white'
             )}
           >
-            <Phone className="w-4 h-4" />
+            <Phone className="w-5 h-5" />
             <span className="hidden xl:inline">(608) 555-1234</span>
           </a>
           <Button
             asChild
-            className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-6 py-2 text-sm font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
+            className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-6 py-3 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
           >
             <Link href="/contact">Free Estimate</Link>
           </Button>

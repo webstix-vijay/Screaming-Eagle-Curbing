@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ChevronRight, Home } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 
 const pathNameMap: Record<string, string> = {
   services: 'Services',
@@ -41,10 +41,9 @@ export function Breadcrumbs() {
           <li>
             <Link
               href="/"
-              className="text-[#64748B] hover:text-[#1E3A8A] transition-colors flex items-center gap-1"
+              className="text-[#64748B] hover:text-[#1E3A8A] transition-colors"
             >
-              <Home className="w-4 h-4" />
-              <span className="sr-only">Home</span>
+              Home
             </Link>
           </li>
           {breadcrumbs.map((crumb) => (

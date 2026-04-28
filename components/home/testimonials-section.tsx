@@ -112,7 +112,7 @@ export function TestimonialsSection() {
           >
             <Button
               asChild
-              className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
+              className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-6 py-3 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
             >
               <Link href="/testimonials">View More Testimonials</Link>
             </Button>

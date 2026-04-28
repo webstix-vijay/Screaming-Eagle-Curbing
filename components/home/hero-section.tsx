@@ -32,7 +32,7 @@ export function HeroSection() {
             style={{ fontSize: '40px' }}
           >
             Clean Edges, Zero Effort.{' '}
-            <span className="text-[#94A3B8]">Permanent</span> Decorative Curbing
+            <span className="text-white">Permanent</span> Decorative Curbing
             for Your La Crosse Home
           </motion.h1>
 

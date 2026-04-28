@@ -140,7 +140,7 @@ export function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-[#1E293B]">
         <div className="max-w-[1200px] mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[#64748B] text-sm text-center md:text-left">
+          <p className="text-[#64748B] text-center md:text-left" style={{ fontSize: '14px' }}>
             &copy; {currentYear} Screaming Eagle Curbing. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
