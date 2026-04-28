@@ -3,9 +3,6 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Header } from '@/components/header'
-import { Footer } from '@/components/footer'
-import { ScrollToTop } from '@/components/scroll-to-top'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { Button } from '@/components/ui/button'
 import { CheckCircle, ArrowRight, Phone } from 'lucide-react'
@@ -34,10 +31,8 @@ export function ServicePageLayout({
   relatedServices,
 }: ServicePageLayoutProps) {
   return (
-    <main className="min-h-screen">
-      <Header />
-      <div className="pt-20">
-        <Breadcrumbs />
+    <div className="pt-20">
+      <Breadcrumbs />
 
         {/* Hero Section */}
         <section className="relative py-24 bg-[#0F172A] overflow-hidden">
@@ -71,14 +66,14 @@ export function ServicePageLayout({
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   asChild
-                  className="bg-[#1E3A8A] text-white hover:bg-[#1E3A8A]/90 rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue"
+                  className="bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
                 >
                   <Link href="/contact">Get Free Estimate</Link>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
-                  className="border-white text-white hover:bg-white/10 rounded-full px-8 py-6"
+                  className="border-white text-white hover:bg-[#94A3B8] hover:border-[#94A3B8] rounded-full px-8 py-6 transition-colors duration-200"
                 >
                   <a href="tel:+16085551234" className="flex items-center gap-2">
                     <Phone className="w-4 h-4" />
@@ -124,7 +119,7 @@ export function ServicePageLayout({
             </p>
             <Button
               asChild
-              className="bg-[#1E3A8A] text-white hover:bg-[#1E3A8A]/90 rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue"
+              className="bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
             >
               <Link href="/contact" className="flex items-center gap-2">
                 Request Free Estimate
@@ -164,9 +159,6 @@ export function ServicePageLayout({
             </div>
           </div>
         </section>
-      </div>
-      <Footer />
-      <ScrollToTop />
-    </main>
+    </div>
   )
 }

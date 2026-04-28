@@ -45,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${inter.variable} bg-background`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${montserrat.variable} ${inter.variable} bg-background`}>
       <body className="font-sans antialiased">
         <Header />
         <main>{children}</main>
