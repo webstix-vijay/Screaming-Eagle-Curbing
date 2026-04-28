@@ -16,7 +16,7 @@ export function ContactHero() {
             Get In Touch
           </span>
           <h1 className="font-[var(--font-montserrat)] font-bold text-4xl md:text-5xl text-white mb-6 text-balance">
-            Request Your Free Estimate
+            Get A Quote Now
           </h1>
           <p className="text-white/80 text-lg max-w-2xl mx-auto leading-relaxed">
             Ready to transform your landscape? Fill out the form below or contact us directly.

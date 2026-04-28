@@ -33,9 +33,12 @@ export function ServiceArea() {
             <span className="inline-block text-[#1E3A8A] text-sm font-semibold uppercase tracking-wider mb-4">
               Service Area
             </span>
-            <h2 className="font-[var(--font-montserrat)] font-bold text-3xl md:text-4xl text-[#0F172A] mb-6 text-balance">
+            <h2 className="font-[var(--font-montserrat)] font-bold text-3xl md:text-4xl text-[#0F172A] mb-4 text-balance">
               Proudly Serving the Coulee Region
             </h2>
+            <p className="text-[#1E3A8A] text-lg font-medium mb-6" style={{ fontSize: '18px' }}>
+              Serving La Crosse, Holmen, Onalaska, West Salem & the entire Coulee Region
+            </p>
             <p className="text-[#64748B] text-base leading-relaxed mb-8">
               Based in Holmen, Wisconsin, we provide decorative curbing and landscaping
               services throughout La Crosse County and the surrounding areas. If you are

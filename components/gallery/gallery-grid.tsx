@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { X } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const galleryImages = [
   {
@@ -95,11 +95,31 @@ const categories = [
 export function GalleryGrid() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [selectedImage, setSelectedImage] = useState<(typeof galleryImages)[0] | null>(null)
+  const [selectedIndex, setSelectedIndex] = useState<number>(0)
 
   const filteredImages =
     activeCategory === 'all'
       ? galleryImages
       : galleryImages.filter((img) => img.category === activeCategory)
+
+  const handleImageClick = (image: (typeof galleryImages)[0], index: number) => {
+    setSelectedImage(image)
+    setSelectedIndex(index)
+  }
+
+  const handlePrevious = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    const newIndex = selectedIndex === 0 ? filteredImages.length - 1 : selectedIndex - 1
+    setSelectedIndex(newIndex)
+    setSelectedImage(filteredImages[newIndex])
+  }
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    const newIndex = selectedIndex === filteredImages.length - 1 ? 0 : selectedIndex + 1
+    setSelectedIndex(newIndex)
+    setSelectedImage(filteredImages[newIndex])
+  }
 
   return (
     <section className="py-24 bg-white">
@@ -127,7 +147,7 @@ export function GalleryGrid() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="popLayout">
-            {filteredImages.map((image) => (
+            {filteredImages.map((image, index) => (
               <motion.div
                 key={image.src}
                 layout
@@ -136,7 +156,7 @@ export function GalleryGrid() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
                 className="group relative aspect-[4/3] rounded-lg overflow-hidden cursor-pointer"
-                onClick={() => setSelectedImage(image)}
+                onClick={() => handleImageClick(image, index)}
               >
                 <Image
                   src={image.src}
@@ -171,6 +191,24 @@ export function GalleryGrid() {
                 aria-label="Close lightbox"
               >
                 <X className="w-8 h-8" />
+              </button>
+              
+              {/* Previous Arrow */}
+              <button
+                onClick={handlePrevious}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-black/50 hover:bg-black/80 rounded-full text-white transition-colors"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              
+              {/* Next Arrow */}
+              <button
+                onClick={handleNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-black/50 hover:bg-black/80 rounded-full text-white transition-colors"
+                aria-label="Next image"
+              >
+                <ChevronRight className="w-6 h-6" />
               </button>
               <motion.div
                 initial={{ scale: 0.9 }}

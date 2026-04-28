@@ -82,7 +82,7 @@ export function AboutPreview() {
 
             <Button
               asChild
-              className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
+              className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-6 py-3 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
             >
               <Link href="/about" className="flex items-center gap-2">
                 Learn Our Story

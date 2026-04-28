@@ -123,22 +123,38 @@
   }
 }
 
-/* Navigation Menu Dropdown Fixes */
-[data-slot="navigation-menu-content"] {
+/* Navigation Menu Dropdown Fixes - Chrome & Firefox compatibility */
+[data-slot="navigation-menu-content"],
+[data-radix-collection-item],
+.navigation-menu-content {
   background-color: #FFFFFF !important;
   color: #0F172A !important;
 }
 
-[data-slot="navigation-menu-content"] a {
+[data-slot="navigation-menu-content"] a,
+[data-slot="navigation-menu-content"] ul li a {
   color: #1E3A8A !important;
+  -webkit-text-fill-color: #1E3A8A !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-[data-slot="navigation-menu-content"] a:hover {
+[data-slot="navigation-menu-content"] a:hover,
+[data-slot="navigation-menu-content"] ul li a:hover {
   background-color: #F8FAFC !important;
   color: #0F172A !important;
+  -webkit-text-fill-color: #0F172A !important;
 }
 
-[data-slot="navigation-menu-viewport"] {
+[data-slot="navigation-menu-viewport"],
+[data-state="open"][data-slot="navigation-menu-content"] {
   background-color: #FFFFFF !important;
   color: #0F172A !important;
+}
+
+/* Ensure dropdown text is always visible in Chrome */
+nav[data-slot="navigation-menu"] ul li a,
+[data-radix-collection-item] a {
+  color: inherit !important;
+  -webkit-text-fill-color: currentColor !important;
 }
