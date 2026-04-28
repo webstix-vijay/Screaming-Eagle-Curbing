@@ -66,7 +66,7 @@ export function ServicePageLayout({
                   asChild
                   className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-6 py-3 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
                 >
-                  <Link href="/contact">Get Free Estimate</Link>
+                  <Link href="/contact">Get A Quote Now</Link>
                 </Button>
                 <Button
                   asChild
@@ -121,7 +121,7 @@ export function ServicePageLayout({
               className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-6 py-3 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Request Free Estimate
+                Get A Quote Now
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>

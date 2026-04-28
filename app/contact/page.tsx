@@ -5,7 +5,7 @@ import { ContactForm } from '@/components/contact/contact-form'
 import { ContactInfo } from '@/components/contact/contact-info'
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Screaming Eagle Curbing - Free Estimates',
+  title: 'Contact Us | Screaming Eagle Curbing - Get A Quote',
   description:
     'Request a free estimate for decorative curbing in La Crosse, WI. Contact Screaming Eagle Curbing by phone, email, or our online form.',
 }

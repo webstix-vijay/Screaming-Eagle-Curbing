@@ -129,7 +129,7 @@ export function Header() {
             asChild
             className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-6 py-3 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
           >
-            <Link href="/contact">Free Estimate</Link>
+            <Link href="/contact">Get A Quote Now</Link>
           </Button>
         </div>
 
@@ -192,7 +192,7 @@ export function Header() {
                   className="w-full bg-[#1E3A8A] text-white hover:bg-black rounded-full py-6 text-base font-semibold uppercase tracking-wide transition-colors duration-200"
                 >
                   <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                    Request Free Estimate
+                    Get A Quote Now
                   </Link>
                 </Button>
               </div>
