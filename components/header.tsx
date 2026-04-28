@@ -115,7 +115,7 @@ export function Header() {
                       useDarkText
                         ? 'text-[#0F172A] hover:text-[#1E3A8A] data-[state=open]:text-[#1E3A8A]'
                         : 'text-white hover:text-white/80 data-[state=open]:text-white/80',
-                      isActive(link.href) && 'text-[#1E3A8A]'
+                      isActive(link.href) && (useDarkText ? 'text-[#1E3A8A]' : 'text-white font-semibold')
                     )}
                   >
                     {link.name}
@@ -127,7 +127,7 @@ export function Header() {
                           <NavigationMenuLink asChild>
                             <Link
                               href={service.href}
-                              className="block px-4 py-2 text-sm text-[#0F172A] hover:bg-[#F8FAFC] hover:text-[#1E3A8A] rounded-sm transition-colors"
+                              className="block px-4 py-2 text-sm text-[#1E3A8A] hover:bg-[#F8FAFC] hover:text-[#0F172A] rounded-sm transition-colors"
                             >
                               {service.name}
                             </Link>
@@ -146,7 +146,7 @@ export function Header() {
                       useDarkText
                         ? 'text-[#0F172A] hover:text-[#1E3A8A]'
                         : 'text-white hover:text-white/80',
-                      isActive(link.href) && 'text-[#1E3A8A]'
+                      isActive(link.href) && (useDarkText ? 'text-[#1E3A8A]' : 'text-white font-semibold')
                     )}
                   >
                     {link.name}
@@ -226,7 +226,7 @@ export function Header() {
                             key={service.name}
                             href={service.href}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-sm text-[#64748B] hover:text-[#1E3A8A] transition-colors py-1"
+                            className="text-sm text-[#1E3A8A] hover:text-[#0F172A] transition-colors py-1"
                           >
                             {service.name}
                           </Link>
