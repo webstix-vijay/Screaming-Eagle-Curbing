@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Shield } from 'lucide-react'
+import { Phone, Shield, Star, Clock } from 'lucide-react'
 
 export function HeroSection() {
   return (
@@ -24,7 +24,7 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-[1200px] mx-auto px-4 py-24 text-left">
+      <div className="relative z-10 max-w-[1200px] mx-auto px-4 py-24 text-center lg:text-left" style={{ marginLeft: 0, marginRight: 0 }}>
         <div className="lg:max-w-2xl">
           {/* Trust Badge */}
           <motion.div
@@ -69,18 +69,53 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-start gap-4"
+            className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
           >
             <Button
               asChild
               size="lg"
-              className="bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
+              className="bg-[#1E3A8A] text-white hover:bg-[#1E3A8A]/90 rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-all duration-300 hover:px-10"
             >
               <Link href="/contact">Request Free Estimate</Link>
             </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="border-white rounded-full px-8 py-6 text-base font-medium"
+              style={{ color: '#002dad' }}
+            >
+              <a href="tel:+16085551234" className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                Tap to Call
+              </a>
+            </Button>
           </motion.div>
 
-
+          {/* Trust Indicators */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-12 grid grid-cols-3 gap-6 max-w-lg mx-auto lg:mx-0"
+          >
+            <div className="text-center lg:text-left">
+              <div className="flex items-center justify-center lg:justify-start gap-1 mb-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <p className="text-white/60 text-xs">5-Star Reviews</p>
+            </div>
+            <div className="text-center lg:text-left">
+              <p className="text-2xl font-bold text-white">7+</p>
+              <p className="text-white/60 text-xs">Years Experience</p>
+            </div>
+            <div className="text-center lg:text-left">
+              <p className="text-2xl font-bold text-white">500+</p>
+              <p className="text-white/60 text-xs">Projects Complete</p>
+            </div>
+          </motion.div>
         </div>
       </div>
 

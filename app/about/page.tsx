@@ -1,4 +1,7 @@
 import { Metadata } from 'next'
+import { Header } from '@/components/header'
+import { Footer } from '@/components/footer'
+import { ScrollToTop } from '@/components/scroll-to-top'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { AboutHero } from '@/components/about/about-hero'
 import { OurStory } from '@/components/about/our-story'
@@ -14,13 +17,18 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="pt-20">
-      <Breadcrumbs />
-      <AboutHero />
-      <OurStory />
-      <OurValues />
-      <ServiceArea />
-      <CTASection />
-    </div>
+    <main className="min-h-screen">
+      <Header />
+      <div className="pt-20">
+        <Breadcrumbs />
+        <AboutHero />
+        <OurStory />
+        <OurValues />
+        <ServiceArea />
+        <CTASection />
+      </div>
+      <Footer />
+      <ScrollToTop />
+    </main>
   )
 }

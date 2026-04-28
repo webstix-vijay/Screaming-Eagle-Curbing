@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, Phone, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -19,14 +20,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu'
 import { cn } from '@/lib/utils'
 
 const services = [
@@ -49,7 +42,6 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
-  const isHomePage = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,27 +56,13 @@ export function Header() {
     return pathname.startsWith(href)
   }
 
-  // Determine header background based on page and scroll state
-  const getHeaderBackground = () => {
-    if (isScrolled) {
-      return 'bg-white/95 backdrop-blur-md shadow-md py-3'
-    }
-    // On inside pages, always show solid background for visibility
-    if (!isHomePage) {
-      return 'bg-[#0F172A] py-5'
-    }
-    // On home page, transparent until scrolled
-    return 'bg-transparent py-5'
-  }
-
-  // Determine if we should use dark text (white background) or light text
-  const useDarkText = isScrolled
-
   return (
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        getHeaderBackground()
+        isScrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-md py-3'
+          : 'bg-transparent py-5'
       )}
     >
       <div className="max-w-[1200px] mx-auto px-4 flex items-center justify-between">
@@ -96,66 +74,65 @@ export function Header() {
             width={280}
             height={180}
             className={cn(
-              'w-auto transition-all duration-300',
-              isScrolled ? 'h-[100px]' : 'h-[130px]'
+              'h-14 w-auto transition-all duration-300',
+              isScrolled ? 'brightness-100' : 'brightness-0 invert'
             )}
             priority
           />
         </Link>
 
-        {/* Desktop Navigation with hover dropdown */}
-        <NavigationMenu className="hidden lg:flex">
-          <NavigationMenuList className="gap-6">
-            {navLinks.map((link) =>
-              link.hasDropdown ? (
-                <NavigationMenuItem key={link.name}>
-                  <NavigationMenuTrigger
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-8">
+          {navLinks.map((link) =>
+            link.hasDropdown ? (
+              <DropdownMenu key={link.name}>
+                <DropdownMenuTrigger asChild>
+                  <button
                     className={cn(
-                      'bg-transparent text-sm font-medium transition-colors duration-200 px-0 hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent',
-                      useDarkText
-                        ? 'text-[#0F172A] hover:text-[#1E3A8A] data-[state=open]:text-[#1E3A8A]'
-                        : 'text-white hover:text-white/80 data-[state=open]:text-white/80',
-                      isActive(link.href) && 'border-b-2 border-[#1E3A8A]'
-                    )}
-                  >
-                    {link.name}
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent className="bg-white border border-[#E2E8F0] shadow-md rounded-md min-w-[200px]">
-                    <ul className="p-2">
-                      {services.map((service) => (
-                        <li key={service.name}>
-                          <NavigationMenuLink asChild>
-                            <Link
-                              href={service.href}
-                              className="block px-4 py-2 text-sm text-[#0F172A] hover:bg-[#F8FAFC] hover:text-[#1E3A8A] rounded-sm transition-colors"
-                            >
-                              {service.name}
-                            </Link>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              ) : (
-                <NavigationMenuItem key={link.name}>
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      'text-sm font-medium transition-colors duration-200',
-                      useDarkText
+                      'flex items-center gap-1 text-sm font-medium transition-colors duration-200 focus:outline-none',
+                      isScrolled
                         ? 'text-[#0F172A] hover:text-[#1E3A8A]'
                         : 'text-white hover:text-white/80',
                       isActive(link.href) && 'border-b-2 border-[#1E3A8A]'
                     )}
                   >
                     {link.name}
-                  </Link>
-                </NavigationMenuItem>
-              )
-            )}
-          </NavigationMenuList>
-        </NavigationMenu>
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="start"
+                  className="w-56 bg-white border border-[#E2E8F0] shadow-md"
+                >
+                  {services.map((service) => (
+                    <DropdownMenuItem key={service.name} asChild>
+                      <Link
+                        href={service.href}
+                        className="cursor-pointer hover:bg-[#F8FAFC] hover:text-[#1E3A8A] transition-colors"
+                      >
+                        {service.name}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  'text-sm font-medium transition-colors duration-200',
+                  isScrolled
+                    ? 'text-[#0F172A] hover:text-[#1E3A8A]'
+                    : 'text-white hover:text-white/80',
+                  isActive(link.href) && 'border-b-2 border-[#1E3A8A]'
+                )}
+              >
+                {link.name}
+              </Link>
+            )
+          )}
+        </nav>
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-4">
@@ -163,7 +140,7 @@ export function Header() {
             href="tel:+16085551234"
             className={cn(
               'flex items-center gap-2 text-sm font-medium transition-colors duration-200',
-              useDarkText ? 'text-[#0F172A]' : 'text-white'
+              isScrolled ? 'text-[#0F172A]' : 'text-white'
             )}
           >
             <Phone className="w-4 h-4" />
@@ -171,7 +148,7 @@ export function Header() {
           </a>
           <Button
             asChild
-            className="bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full px-6 py-2 text-sm font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
+            className="bg-[#1E3A8A] text-white hover:bg-[#1E3A8A]/90 rounded-full px-6 py-2 text-sm font-semibold uppercase tracking-wide shadow-blue transition-all duration-200 hover:px-8"
           >
             <Link href="/contact">Free Estimate</Link>
           </Button>
@@ -183,7 +160,7 @@ export function Header() {
             href="tel:+16085551234"
             className={cn(
               'p-2 rounded-full transition-colors',
-              useDarkText ? 'text-[#1E3A8A]' : 'text-white'
+              isScrolled ? 'text-[#1E3A8A]' : 'text-white'
             )}
             aria-label="Call us"
           >
@@ -194,7 +171,7 @@ export function Header() {
               <button
                 className={cn(
                   'p-2 rounded-md transition-colors',
-                  useDarkText ? 'text-[#0F172A]' : 'text-white'
+                  isScrolled ? 'text-[#0F172A]' : 'text-white'
                 )}
                 aria-label="Open menu"
               >
@@ -253,7 +230,7 @@ export function Header() {
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-[#F8FAFC] border-t border-[#E2E8F0]">
                 <Button
                   asChild
-                  className="w-full bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full py-6 text-base font-semibold uppercase tracking-wide transition-colors duration-200"
+                  className="w-full bg-[#1E3A8A] text-white hover:bg-[#1E3A8A]/90 rounded-full py-6 text-base font-semibold uppercase tracking-wide"
                 >
                   <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                     Request Free Estimate
