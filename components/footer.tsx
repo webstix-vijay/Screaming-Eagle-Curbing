@@ -5,7 +5,7 @@ import { Facebook, Phone, Mail, Clock, MapPin } from 'lucide-react'
 const quickLinks = [
   { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
-  { name: 'Services', href: '/services/decorative-curbing' },
+  { name: 'Services', href: '/services' },
   { name: 'Gallery', href: '/gallery' },
   { name: 'Contact', href: '/contact' },
 ]

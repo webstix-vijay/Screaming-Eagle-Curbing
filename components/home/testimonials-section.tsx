@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { Star, Quote } from 'lucide-react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 const testimonials = [
   {
@@ -96,10 +98,26 @@ export function TestimonialsSection() {
                 <p className="font-semibold text-[#0F172A]">{testimonial.name}</p>
                 <p className="text-[#64748B] text-sm">{testimonial.location}</p>
               </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* View More Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-center mt-12"
+          >
+            <Button
+              asChild
+              className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
+            >
+              <Link href="/testimonials">View More Testimonials</Link>
+            </Button>
+          </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
   )
 }

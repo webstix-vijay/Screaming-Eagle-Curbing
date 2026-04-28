@@ -162,12 +162,12 @@ export function GalleryGrid() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 md:p-8"
               onClick={() => setSelectedImage(null)}
             >
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 p-2 text-white hover:text-[#94A3B8] transition-colors"
+                className="absolute top-4 right-4 z-10 p-2 text-white hover:text-[#94A3B8] transition-colors"
                 aria-label="Close lightbox"
               >
                 <X className="w-8 h-8" />
@@ -176,21 +176,25 @@ export function GalleryGrid() {
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.9 }}
-                className="relative max-w-4xl w-full max-h-[80vh]"
+                className="relative w-full max-w-4xl h-auto max-h-[85vh] flex flex-col"
                 onClick={(e) => e.stopPropagation()}
               >
-                <Image
-                  src={selectedImage.src}
-                  alt={selectedImage.alt}
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto rounded-lg"
-                />
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent rounded-b-lg">
-                  <h3 className="text-white font-semibold text-xl">
+                <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-lg">
+                  <Image
+                    src={selectedImage.src}
+                    alt={selectedImage.alt}
+                    width={1200}
+                    height={800}
+                    className="w-full h-auto max-h-[75vh] object-contain rounded-lg"
+                    sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 1200px"
+                    priority
+                  />
+                </div>
+                <div className="mt-4 p-4 bg-black/60 rounded-lg">
+                  <h3 className="text-white font-semibold text-lg md:text-xl">
                     {selectedImage.title}
                   </h3>
-                  <p className="text-white/80">{selectedImage.description}</p>
+                  <p className="text-white/80 text-sm md:text-base">{selectedImage.description}</p>
                 </div>
               </motion.div>
             </motion.div>

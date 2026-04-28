@@ -48,8 +48,13 @@ const navLinks = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
   const isHomePage = pathname === '/'
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -120,14 +125,29 @@ export function Header() {
                   >
                     {link.name}
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="!bg-white border border-[#E2E8F0] shadow-lg rounded-md min-w-[200px]">
-                    <ul className="p-2">
+                  <NavigationMenuContent 
+                    className="!bg-white border border-[#E2E8F0] shadow-lg rounded-md min-w-[200px]"
+                    style={{ backgroundColor: '#FFFFFF' }}
+                  >
+                    <ul className="p-2" style={{ backgroundColor: '#FFFFFF' }}>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            href="/services"
+                            className="block px-4 py-2 text-sm font-semibold hover:bg-[#F8FAFC] rounded-sm transition-colors border-b border-[#E2E8F0] mb-1"
+                            style={{ color: '#1E3A8A', backgroundColor: 'transparent' }}
+                          >
+                            All Services
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
                       {services.map((service) => (
                         <li key={service.name}>
                           <NavigationMenuLink asChild>
                             <Link
                               href={service.href}
-                              className="block px-4 py-2 text-sm text-[#1E3A8A] hover:bg-[#F8FAFC] hover:text-[#0F172A] rounded-sm transition-colors"
+                              className="block px-4 py-2 text-sm hover:bg-[#F8FAFC] rounded-sm transition-colors"
+                              style={{ color: '#1E3A8A', backgroundColor: 'transparent' }}
                             >
                               {service.name}
                             </Link>
@@ -217,9 +237,13 @@ export function Header() {
                 {navLinks.map((link) =>
                   link.hasDropdown ? (
                     <div key={link.name} className="py-3">
-                      <span className="text-sm font-semibold text-[#0F172A] uppercase tracking-wide">
+                      <Link
+                        href="/services"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="text-sm font-semibold text-[#0F172A] uppercase tracking-wide hover:text-[#1E3A8A] transition-colors"
+                      >
                         {link.name}
-                      </span>
+                      </Link>
                       <div className="mt-2 ml-4 flex flex-col gap-2">
                         {services.map((service) => (
                           <Link
