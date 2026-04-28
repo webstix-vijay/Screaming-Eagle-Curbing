@@ -19,17 +19,17 @@ const relatedServices = [
   {
     title: 'Decorative Curbing',
     href: '/services/decorative-curbing',
-    image: '/images/curbing-stamped.jpg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/648969539_1523399962552606_9149390113985786585_n-Y1XefroO2xDRxLWn45sTqhfH1QMFbs.jpg',
   },
   {
     title: 'Rock & Mulch',
     href: '/services/rock-mulch',
-    image: '/images/rock-mulch.jpg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/548334124_1371765371049400_3565142757403817734_n-FmBXxvhFetZUkfphHptQo0VedZ4jfc.jpg',
   },
   {
     title: 'Seeding',
     href: '/services/seeding',
-    image: '/images/seeding.jpg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/486163644_1220695759489696_626873201542925766_n-k2qVtZX8JVnAtRSwWM2CLJKrURDhVk.jpg',
   },
 ]
 
@@ -39,7 +39,7 @@ export default function RetainingWallsPage() {
       title="Retaining Walls"
       subtitle="Function Meets Beauty"
       description="Retaining walls solve practical problems while adding architectural interest to your landscape. Whether you need to manage slopes, create raised garden beds, or add visual dimension, our professionally installed walls deliver lasting results."
-      heroImage="/images/retaining-wall.jpg"
+      heroImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/487113487_1223360492556556_6443011365999819935_n-iBGS0x56DUkPj2G4cPDVoPO4q3Rdhj.jpg"
       benefits={benefits}
       relatedServices={relatedServices}
       content={
@@ -72,7 +72,7 @@ export default function RetainingWallsPage() {
             </div>
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/images/retaining-wall.jpg"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/486354840_1223360722556533_2822022054035779697_n-PGpp6gBJSEDlOPGPRX4eocQsGi7Rp5.jpg"
                 alt="Professional retaining wall installation"
                 fill
                 className="object-cover"

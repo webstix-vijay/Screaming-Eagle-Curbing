@@ -151,10 +151,10 @@ export function Footer() {
               Privacy Policy
             </Link>
             <Link
-              href="/terms"
+              href="/sitemap-page"
               className="text-[#64748B] hover:text-white text-sm transition-colors"
             >
-              Terms of Service
+              Sitemap
             </Link>
           </div>
         </div>

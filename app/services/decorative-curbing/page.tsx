@@ -5,7 +5,7 @@ import { ServicePageLayout } from '@/components/services/service-page-layout'
 export const metadata: Metadata = {
   title: 'Decorative Curbing | Screaming Eagle Curbing - La Crosse, WI',
   description:
-    'Premium decorative concrete curbing services in La Crosse, WI. Choose from Slant, Mower, or Stamped styles with unlimited colors. Permanent landscape borders that eliminate weed whacking.',
+    'Premium decorative concrete curbing services in La Crosse, WI. Choose from Standard Curb, Roller Stamp Curb, or Carved Custom Curb styles with unlimited colors. Permanent landscape borders that eliminate weed whacking.',
 }
 
 const benefits = [
@@ -19,17 +19,17 @@ const relatedServices = [
   {
     title: 'Rock & Mulch',
     href: '/services/rock-mulch',
-    image: '/images/rock-mulch.jpg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/548334124_1371765371049400_3565142757403817734_n-FmBXxvhFetZUkfphHptQo0VedZ4jfc.jpg',
   },
   {
     title: 'Retaining Walls',
     href: '/services/retaining-walls',
-    image: '/images/retaining-wall.jpg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/487113487_1223360492556556_6443011365999819935_n-iBGS0x56DUkPj2G4cPDVoPO4q3Rdhj.jpg',
   },
   {
     title: 'Seeding',
     href: '/services/seeding',
-    image: '/images/seeding.jpg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/486163644_1220695759489696_626873201542925766_n-k2qVtZX8JVnAtRSwWM2CLJKrURDhVk.jpg',
   },
 ]
 
@@ -39,7 +39,7 @@ export default function DecorativeCurbingPage() {
       title="Decorative Curbing"
       subtitle="Our Signature Service"
       description="Transform messy lawn edges into elegant, permanent borders with our professional decorative concrete curbing. Available in three distinct styles with unlimited color and stamp options to perfectly match your home."
-      heroImage="/images/curbing-stamped.jpg"
+      heroImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/648969539_1523399962552606_9149390113985786585_n-Y1XefroO2xDRxLWn45sTqhfH1QMFbs.jpg"
       benefits={benefits}
       relatedServices={relatedServices}
       content={
@@ -71,8 +71,8 @@ export default function DecorativeCurbingPage() {
             </div>
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/images/curbing-slant.jpg"
-                alt="Slant style decorative curbing"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/472497297_1620166712041812_8177165591101665734_n-H2QV5Low6mBfmFiFjTqrIolLbdMnj2.jpg"
+                alt="Decorative curbing installation"
                 fill
                 className="object-cover"
               />
@@ -85,68 +85,68 @@ export default function DecorativeCurbingPage() {
               Three Styles to Match Your Vision
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Slant Style */}
+              {/* Standard Curb */}
               <div className="bg-white rounded-lg overflow-hidden shadow-md">
                 <div className="relative aspect-[4/3]">
                   <Image
-                    src="/images/curbing-slant.jpg"
-                    alt="Slant style curbing"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/558976269_1393236375568966_6821219767755432624_n-s8p99a5FSdgnCrSOhemhFH96ARIntM.jpg"
+                    alt="Standard Curb style"
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="p-6">
                   <h3 className="font-[var(--font-montserrat)] font-semibold text-xl text-[#0F172A] mb-2">
-                    Slant Style
+                    Standard Curb
                   </h3>
                   <p className="text-[#64748B] text-sm leading-relaxed">
-                    Our most popular option features an angled edge that creates a clean,
-                    modern look. The slant design effectively contains mulch and rock while
-                    allowing easy mowing along the border.
+                    Our classic option features a clean, timeless profile that works with any
+                    landscape design. The standard curb effectively contains mulch and rock
+                    while providing a professional, finished look.
                   </p>
                 </div>
               </div>
 
-              {/* Mower Style */}
+              {/* Roller Stamp Curb */}
               <div className="bg-white rounded-lg overflow-hidden shadow-md">
                 <div className="relative aspect-[4/3]">
                   <Image
-                    src="/images/curbing-mower.jpg"
-                    alt="Mower style curbing"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/648969539_1523399962552606_9149390113985786585_n-Y1XefroO2xDRxLWn45sTqhfH1QMFbs.jpg"
+                    alt="Roller Stamp Curb style"
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="p-6">
                   <h3 className="font-[var(--font-montserrat)] font-semibold text-xl text-[#0F172A] mb-2">
-                    Mower Style
+                    Roller Stamp Curb
                   </h3>
                   <p className="text-[#64748B] text-sm leading-relaxed">
-                    Designed with functionality in mind, the rounded mower edge allows your
-                    lawn mower wheel to roll right over the curb. Ideal for homeowners who
-                    want the cleanest possible mowing experience.
+                    Add texture and visual interest with our roller stamp patterns. Choose from
+                    stone, brick, or slate designs that give your curbing a natural, hand-crafted
+                    appearance.
                   </p>
                 </div>
               </div>
 
-              {/* Stamped Style */}
+              {/* Carved Custom Curb */}
               <div className="bg-white rounded-lg overflow-hidden shadow-md">
                 <div className="relative aspect-[4/3]">
                   <Image
-                    src="/images/curbing-stamped.jpg"
-                    alt="Stamped style curbing"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/672679836_1560142295545039_7809688759952566075_n-SRmCzWJ0lSxP7QJ2cq0xvaobrOLbwM.jpg"
+                    alt="Carved Custom Curb style"
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="p-6">
                   <h3 className="font-[var(--font-montserrat)] font-semibold text-xl text-[#0F172A] mb-2">
-                    Stamped Style
+                    Carved Custom Curb
                   </h3>
                   <p className="text-[#64748B] text-sm leading-relaxed">
-                    Make a statement with decorative stamp patterns including brick,
-                    cobblestone, rope, and custom designs. Combined with color options,
-                    stamped curbing adds distinctive character to any landscape.
+                    Make a statement with hand-carved custom designs tailored to your vision.
+                    Our skilled craftsmen can create unique patterns, shapes, and details that
+                    make your landscape truly one-of-a-kind.
                   </p>
                 </div>
               </div>
@@ -157,7 +157,7 @@ export default function DecorativeCurbingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-xl order-2 lg:order-1">
               <Image
-                src="/images/gallery-2.jpg"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/487079728_1223159932576612_876525973281746247_n-YVlEUVFaLxLvVTNp9qh52k3ZIGNKIF.jpg"
                 alt="Colored decorative curbing"
                 fill
                 className="object-cover"

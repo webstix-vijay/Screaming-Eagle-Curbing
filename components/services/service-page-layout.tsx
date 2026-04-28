@@ -70,12 +70,11 @@ export function ServicePageLayout({
                 </Button>
                 <Button
                   asChild
-                  variant="outline"
-                  className="border-white bg-transparent text-white hover:bg-black hover:border-black rounded-full px-8 py-6 transition-colors duration-200"
+                  className="bg-black text-white border-2 border-black hover:bg-white hover:text-black rounded-full px-8 py-6 transition-colors duration-200"
                 >
-                  <a href="tel:+16085551234" className="flex items-center gap-2 text-white">
-                    <Phone className="w-4 h-4 text-white" />
-                    <span className="text-white">Call Now</span>
+                  <a href="tel:+16085551234" className="flex items-center gap-2">
+                    <Phone className="w-4 h-4" />
+                    <span>Call Now</span>
                   </a>
                 </Button>
               </div>

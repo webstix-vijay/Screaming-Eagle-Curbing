@@ -19,17 +19,17 @@ const relatedServices = [
   {
     title: 'Decorative Curbing',
     href: '/services/decorative-curbing',
-    image: '/images/curbing-stamped.jpg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/648969539_1523399962552606_9149390113985786585_n-Y1XefroO2xDRxLWn45sTqhfH1QMFbs.jpg',
   },
   {
     title: 'Retaining Walls',
     href: '/services/retaining-walls',
-    image: '/images/retaining-wall.jpg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/487113487_1223360492556556_6443011365999819935_n-iBGS0x56DUkPj2G4cPDVoPO4q3Rdhj.jpg',
   },
   {
     title: 'Seeding',
     href: '/services/seeding',
-    image: '/images/seeding.jpg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/486163644_1220695759489696_626873201542925766_n-k2qVtZX8JVnAtRSwWM2CLJKrURDhVk.jpg',
   },
 ]
 
@@ -39,7 +39,7 @@ export default function RockMulchPage() {
       title="Rock & Mulch Installation"
       subtitle="Complete Landscape Bed Service"
       description="Elevate your landscape beds with professional rock or mulch installation. We handle everything from bed preparation to material delivery and installation, creating beautiful, low-maintenance beds that complement your decorative curbing."
-      heroImage="/images/rock-mulch.jpg"
+      heroImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/548334124_1371765371049400_3565142757403817734_n-FmBXxvhFetZUkfphHptQo0VedZ4jfc.jpg"
       benefits={benefits}
       relatedServices={relatedServices}
       content={
@@ -71,7 +71,7 @@ export default function RockMulchPage() {
             </div>
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/images/rock-mulch.jpg"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/672679836_1560142295545039_7809688759952566075_n-SRmCzWJ0lSxP7QJ2cq0xvaobrOLbwM.jpg"
                 alt="Professional rock and mulch installation"
                 fill
                 className="object-cover"
