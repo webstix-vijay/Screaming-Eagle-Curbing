@@ -1,7 +1,4 @@
 import { Metadata } from 'next'
-import { Header } from '@/components/header'
-import { Footer } from '@/components/footer'
-import { ScrollToTop } from '@/components/scroll-to-top'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { GalleryHero } from '@/components/gallery/gallery-hero'
 import { GalleryGrid } from '@/components/gallery/gallery-grid'
@@ -15,16 +12,11 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   return (
-    <main className="min-h-screen">
-      <Header />
-      <div className="pt-20">
-        <Breadcrumbs />
-        <GalleryHero />
-        <GalleryGrid />
-        <CTASection />
-      </div>
-      <Footer />
-      <ScrollToTop />
-    </main>
+    <div className="pt-20">
+      <Breadcrumbs />
+      <GalleryHero />
+      <GalleryGrid />
+      <CTASection />
+    </div>
   )
 }

@@ -116,7 +116,7 @@ export function GalleryPreview() {
         >
           <Button
             asChild
-            className="bg-[#1E3A8A] text-white hover:bg-[#1E3A8A]/90 rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-all duration-200 hover:px-10"
+            className="bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
           >
             <Link href="/gallery" className="flex items-center gap-2">
               View Full Gallery

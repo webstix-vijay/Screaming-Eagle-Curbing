@@ -1,8 +1,5 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Header } from '@/components/header'
-import { Footer } from '@/components/footer'
-import { ScrollToTop } from '@/components/scroll-to-top'
 import { Button } from '@/components/ui/button'
 import { CheckCircle, ArrowRight, Phone, Home } from 'lucide-react'
 
@@ -14,9 +11,7 @@ export const metadata: Metadata = {
 
 export default function ThankYouPage() {
   return (
-    <main className="min-h-screen">
-      <Header />
-      <div className="pt-20">
+    <div className="pt-20">
         <section className="py-32 bg-[#F8FAFC]">
           <div className="max-w-[600px] mx-auto px-4 text-center">
             {/* Success Icon */}
@@ -71,7 +66,7 @@ export default function ThankYouPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
                 asChild
-                className="bg-[#1E3A8A] text-white hover:bg-[#1E3A8A]/90 rounded-full px-6 py-5"
+                className="bg-[#1E3A8A] text-white hover:bg-[#94A3B8] rounded-full px-6 py-5 transition-colors duration-200"
               >
                 <Link href="/" className="flex items-center gap-2">
                   <Home className="w-4 h-4" />
@@ -81,7 +76,7 @@ export default function ThankYouPage() {
               <Button
                 asChild
                 variant="outline"
-                className="border-[#1E3A8A] text-[#1E3A8A] hover:bg-[#1E3A8A]/5 rounded-full px-6 py-5"
+                className="border-[#1E3A8A] text-[#1E3A8A] hover:bg-[#94A3B8] hover:text-white hover:border-[#94A3B8] rounded-full px-6 py-5 transition-colors duration-200"
               >
                 <Link href="/gallery" className="flex items-center gap-2">
                   View Gallery
@@ -103,9 +98,6 @@ export default function ThankYouPage() {
             </div>
           </div>
         </section>
-      </div>
-      <Footer />
-      <ScrollToTop />
-    </main>
+    </div>
   )
 }
