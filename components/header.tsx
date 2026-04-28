@@ -101,9 +101,9 @@ export function Header() {
                   className={cn(
                     'text-base font-medium transition-colors duration-200',
                     useDarkText
-                      ? 'text-[#0F172A] hover:text-[#1E3A8A]'
+                      ? 'text-black hover:text-[#1E3A8A]'
                       : 'text-white hover:text-white/80',
-                    isActive(link.href) && (useDarkText ? 'text-[#1E3A8A]' : 'text-white font-semibold')
+                    isActive(link.href) && (useDarkText ? 'text-[#1E3A8A] font-semibold' : 'text-white font-semibold')
                   )}
                 >
                   {link.name}
@@ -119,7 +119,7 @@ export function Header() {
             href="tel:+16085551234"
             className={cn(
               'flex items-center gap-2 text-lg font-medium transition-colors duration-200',
-              useDarkText ? 'text-[#0F172A]' : 'text-white'
+              useDarkText ? 'text-black' : 'text-white'
             )}
           >
             <Phone className="w-5 h-5" />
