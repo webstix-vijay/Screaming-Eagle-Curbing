@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <div className="pt-20">
-      <Breadcrumbs />
       <GalleryHero />
+      <Breadcrumbs />
       <GalleryGrid />
       <CTASection />
     </div>

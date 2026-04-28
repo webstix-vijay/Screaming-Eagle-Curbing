@@ -21,7 +21,7 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-[1200px] w-full mx-auto px-4 py-24 text-left">
+      <div className="relative z-10 max-w-[1200px] w-full mx-auto px-4 pt-30 pb-20 text-left">
         <div className="max-w-2xl">
           {/* Headline */}
           <motion.h1

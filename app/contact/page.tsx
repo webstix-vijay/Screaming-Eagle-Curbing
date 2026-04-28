@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="pt-20">
-      <Breadcrumbs />
       <ContactHero />
+      <Breadcrumbs />
       <section className="py-24 bg-white">
         <div className="max-w-[1200px] mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

@@ -32,8 +32,6 @@ export function ServicePageLayout({
 }: ServicePageLayoutProps) {
   return (
     <div className="pt-20">
-      <Breadcrumbs />
-
         {/* Hero Section */}
         <section className="relative py-24 bg-[#0F172A] overflow-hidden">
           <div className="absolute inset-0 z-0 opacity-40">
@@ -98,6 +96,8 @@ export function ServicePageLayout({
             </div>
           </div>
         </section>
+
+        <Breadcrumbs />
 
         {/* Main Content */}
         <section className="py-24 bg-white">
