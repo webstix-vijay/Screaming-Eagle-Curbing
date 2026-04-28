@@ -2,9 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Shield } from 'lucide-react'
 
 export function HeroSection() {
   return (
@@ -26,19 +23,6 @@ export function HeroSection() {
       {/* Content */}
       <div className="relative z-10 max-w-[1200px] w-full mx-auto px-4 py-24 text-left">
         <div className="max-w-2xl">
-          {/* Trust Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6"
-          >
-            <Shield className="w-4 h-4 text-[#1E3A8A]" />
-            <span className="text-white text-sm font-medium">
-              Owner-Operated | 7+ Years Experience
-            </span>
-          </motion.div>
-
           {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -63,23 +47,6 @@ export function HeroSection() {
             eliminates messy edges and time-consuming maintenance. One installation,
             years of beauty.
           </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-start gap-4"
-          >
-            <Button
-              asChild
-              size="lg"
-              className="bg-[#1E3A8A] text-white hover:bg-black rounded-full px-8 py-6 text-base font-semibold uppercase tracking-wide shadow-blue transition-colors duration-200"
-            >
-              <Link href="/contact">Request Free Estimate</Link>
-            </Button>
-          </motion.div>
-
 
         </div>
       </div>
