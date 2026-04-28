@@ -147,7 +147,7 @@ export function GalleryGrid() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="popLayout">
-            {filteredImages.map((image) => (
+            {filteredImages.map((image, index) => (
               <motion.div
                 key={image.src}
                 layout
