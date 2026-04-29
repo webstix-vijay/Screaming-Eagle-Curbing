@@ -65,7 +65,7 @@ export function CTASection() {
               size="lg"
               className="bg-black text-white border-2 border-black hover:bg-white hover:text-black rounded-full px-6 py-3 text-base font-medium transition-colors duration-200"
             >
-              <a href="tel:+16085551234" className="flex items-center gap-2">
+              <a href="tel:+17158967448" className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
                 Call Now
               </a>

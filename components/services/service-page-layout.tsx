@@ -72,7 +72,7 @@ export function ServicePageLayout({
                   asChild
                   className="bg-white text-black border-2 border-white hover:bg-black hover:text-white hover:border-black rounded-full px-6 py-3 transition-colors duration-200"
                 >
-                  <a href="tel:+16085551234" className="flex items-center gap-2">
+                  <a href="tel:+17158967448" className="flex items-center gap-2">
                     <Phone className="w-4 h-4" />
                     <span>Call Now</span>
                   </a>

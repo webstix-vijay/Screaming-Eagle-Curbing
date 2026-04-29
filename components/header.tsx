@@ -190,7 +190,7 @@ export function Header() {
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-4">
           <a
-            href="tel:+16085551234"
+            href="tel:+17158967448"
             className="flex items-center gap-2 text-lg font-medium transition-colors duration-200"
             style={{
               color: useDarkText ? '#000000' : '#FFFFFF',
@@ -198,7 +198,7 @@ export function Header() {
             }}
           >
             <Phone className="w-5 h-5" />
-            <span className="hidden xl:inline">(608) 555-1234</span>
+            <span className="hidden xl:inline">(715) 896-7448</span>
           </a>
           <Button
             asChild
@@ -211,7 +211,7 @@ export function Header() {
         {/* Mobile Menu */}
         <div className="lg:hidden flex items-center gap-3">
           <a
-            href="tel:+16085551234"
+            href="tel:+17158967448"
             className={cn(
               'p-2 rounded-full transition-colors',
               useDarkText ? 'text-[#1E3A8A]' : 'text-white'

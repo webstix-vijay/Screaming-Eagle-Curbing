@@ -97,7 +97,7 @@ export default function PrivacyPolicyPage() {
               <p className="text-[#0F172A] font-semibold">Screaming Eagle Curbing</p>
               <p className="text-[#64748B]">Holmen, WI 54636</p>
               <p className="text-[#64748B]">Email: screamingeaglecurbing@outlook.com</p>
-              <p className="text-[#64748B]">Phone: (608) 555-1234</p>
+              <p className="text-[#64748B]">Phone: (715) 896-7448</p>
             </div>
 
             <h2 className="font-[var(--font-montserrat)] font-bold text-2xl text-[#0F172A] mb-4 mt-8">

@@ -23,10 +23,10 @@ export function ContactInfo() {
           <div>
             <p className="font-semibold text-[#0F172A]">Phone</p>
             <a
-              href="tel:+16085551234"
+              href="tel:+17158967448"
               className="text-[#1E3A8A] hover:underline text-lg font-medium"
             >
-              (608) 555-1234
+              (715) 896-7448
             </a>
             <p className="text-[#64748B] text-sm mt-1">Tap to call directly</p>
           </div>
@@ -96,7 +96,7 @@ export function ContactInfo() {
           Give us a call for a quick consultation
         </p>
         <a
-          href="tel:+16085551234"
+          href="tel:+17158967448"
           className="inline-block w-full bg-white text-[#1E3A8A] font-semibold py-3 rounded-full hover:bg-white/90 transition-colors"
         >
           Call Now

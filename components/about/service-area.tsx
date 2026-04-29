@@ -93,10 +93,10 @@ export function ServiceArea() {
                 <div>
                   <p className="font-semibold text-[#0F172A]">Phone</p>
                   <a
-                    href="tel:+16085551234"
+                    href="tel:+17158967448"
                     className="text-[#1E3A8A] hover:underline"
                   >
-                    (608) 555-1234
+                    (715) 896-7448
                   </a>
                 </div>
               </div>

@@ -89,11 +89,11 @@ export default function ThankYouPage() {
             <div className="mt-12 pt-8 border-t border-[#E2E8F0]">
               <p className="text-[#64748B] mb-4">Need immediate assistance?</p>
               <a
-                href="tel:+16085551234"
+                href="tel:+17158967448"
                 className="inline-flex items-center gap-2 text-[#1E3A8A] font-semibold text-lg hover:underline"
               >
                 <Phone className="w-5 h-5" />
-                (608) 555-1234
+                (715) 896-7448
               </a>
             </div>
           </div>
