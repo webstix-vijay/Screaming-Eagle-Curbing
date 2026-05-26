@@ -140,8 +140,12 @@ export const TurnstileWidget = forwardRef<
         'expired-callback': () => {
           callbacksRef.current.onExpire?.()
         },
-        'error-callback': () => {
-          setLoadError('Security verification encountered an error. Please refresh the page.')
+        'error-callback': (errorCode) => {
+          // Error code 110200 means domain not authorized in Turnstile settings
+          const errorMessage = errorCode === '110200' || errorCode === 110200
+            ? 'Security verification is not configured for this domain. Please contact us by phone.'
+            : 'Security verification encountered an error. Please refresh the page.'
+          setLoadError(errorMessage)
           callbacksRef.current.onError?.()
         },
       })
