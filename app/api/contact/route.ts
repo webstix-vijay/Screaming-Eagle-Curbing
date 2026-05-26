@@ -31,7 +31,11 @@ export async function POST(request: Request) {
     request.headers.get('x-real-ip') ||
     undefined
 
-  const verification = await verifyTurnstileToken(turnstileToken, remoteIp)
+  // Get the hostname from the request for environment detection
+  const hostHeader = request.headers.get('host') || request.headers.get('x-forwarded-host')
+  const hostname = hostHeader?.split(':')[0] // Remove port if present
+
+  const verification = await verifyTurnstileToken(turnstileToken, remoteIp, hostname)
 
   if (!verification.success) {
     return Response.json(

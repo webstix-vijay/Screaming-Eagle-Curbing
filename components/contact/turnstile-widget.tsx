@@ -13,6 +13,10 @@ import {
 const TURNSTILE_SCRIPT_SRC =
   'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad'
 
+// Cloudflare's always-passing test key for development
+// See: https://developers.cloudflare.com/turnstile/troubleshooting/testing/
+const TURNSTILE_TEST_SITE_KEY = '1x00000000000000000000AA'
+
 type TurnstileRenderOptions = {
   sitekey: string
   callback?: (token: string) => void
@@ -46,6 +50,16 @@ type TurnstileWidgetProps = {
   onError?: () => void
 }
 
+// Check if we're on a production domain
+function isProductionDomain(): boolean {
+  if (typeof window === 'undefined') return false
+  const hostname = window.location.hostname
+  return (
+    hostname === 'screamingeaglecurbing.com' ||
+    hostname === 'www.screamingeaglecurbing.com'
+  )
+}
+
 export const TurnstileWidget = forwardRef<
   TurnstileWidgetHandle,
   TurnstileWidgetProps
@@ -54,8 +68,28 @@ export const TurnstileWidget = forwardRef<
   const widgetIdRef = useRef<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [loadError, setLoadError] = useState<string | null>(null)
+  const [isClient, setIsClient] = useState(false)
   const callbacksRef = useRef({ onVerify, onExpire, onError })
-  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
+  const configuredSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
+
+  // Determine which site key to use
+  const getSiteKey = useCallback((): string | null => {
+    if (!isClient) return null
+    
+    // On production domains, use the configured key
+    if (isProductionDomain()) {
+      return configuredSiteKey || null
+    }
+    
+    // On non-production (localhost, preview URLs, etc.), use the test key
+    // This allows development without domain restrictions
+    return TURNSTILE_TEST_SITE_KEY
+  }, [isClient, configuredSiteKey])
+
+  // Hydration fix - only run client-side logic after mount
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   // Keep callbacks ref updated to avoid stale closures
   useEffect(() => {
@@ -75,6 +109,8 @@ export const TurnstileWidget = forwardRef<
   useImperativeHandle(ref, () => ({ reset: resetWidget }), [resetWidget])
 
   const renderWidget = useCallback(() => {
+    const siteKey = getSiteKey()
+    
     if (!siteKey || !containerRef.current || !window.turnstile) {
       return
     }
@@ -83,7 +119,7 @@ export const TurnstileWidget = forwardRef<
     if (widgetIdRef.current) {
       try {
         window.turnstile.remove(widgetIdRef.current)
-      } catch (e) {
+      } catch {
         // Widget may already be removed
       }
       widgetIdRef.current = null
@@ -104,19 +140,21 @@ export const TurnstileWidget = forwardRef<
         'expired-callback': () => {
           callbacksRef.current.onExpire?.()
         },
-        'error-callback': (error) => {
+        'error-callback': () => {
           setLoadError('Security verification encountered an error. Please refresh the page.')
           callbacksRef.current.onError?.()
         },
       })
       setIsLoading(false)
-    } catch (error) {
+    } catch {
       setLoadError('Failed to load security verification. Please refresh the page.')
       setIsLoading(false)
     }
-  }, [siteKey])
+  }, [getSiteKey])
 
   useEffect(() => {
+    if (!isClient) return
+
     // Set up the global callback for when script loads
     window.onTurnstileLoad = () => {
       renderWidget()
@@ -132,13 +170,27 @@ export const TurnstileWidget = forwardRef<
       if (widgetIdRef.current && window.turnstile) {
         try {
           window.turnstile.remove(widgetIdRef.current)
-        } catch (e) {
+        } catch {
           // Widget may already be removed
         }
         widgetIdRef.current = null
       }
     }
-  }, [renderWidget])
+  }, [renderWidget, isClient])
+
+  // Show nothing during SSR to avoid hydration mismatch
+  if (!isClient) {
+    return (
+      <div className="min-h-[65px] flex items-center">
+        <div className="flex items-center gap-2 text-sm text-gray-500 py-2">
+          <div className="w-4 h-4 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" />
+          Loading security verification...
+        </div>
+      </div>
+    )
+  }
+
+  const siteKey = getSiteKey()
 
   if (!siteKey) {
     return (
