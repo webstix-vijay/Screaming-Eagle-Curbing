@@ -66,8 +66,8 @@ export const TurnstileWidget = forwardRef<
     if (widgetIdRef.current && window.turnstile) {
       try {
         window.turnstile.reset(widgetIdRef.current)
-      } catch (e) {
-        console.error('[v0] Turnstile reset error:', e)
+      } catch {
+        // Reset may fail if widget was removed
       }
     }
   }, [])
@@ -76,11 +76,6 @@ export const TurnstileWidget = forwardRef<
 
   const renderWidget = useCallback(() => {
     if (!siteKey || !containerRef.current || !window.turnstile) {
-      console.log('[v0] Turnstile render skipped - missing:', {
-        siteKey: !!siteKey,
-        container: !!containerRef.current,
-        turnstile: !!window.turnstile,
-      })
       return
     }
 
@@ -110,14 +105,12 @@ export const TurnstileWidget = forwardRef<
           callbacksRef.current.onExpire?.()
         },
         'error-callback': (error) => {
-          console.error('[v0] Turnstile error callback:', error)
           setLoadError('Security verification encountered an error. Please refresh the page.')
           callbacksRef.current.onError?.()
         },
       })
       setIsLoading(false)
     } catch (error) {
-      console.error('[v0] Turnstile render error:', error)
       setLoadError('Failed to load security verification. Please refresh the page.')
       setIsLoading(false)
     }
@@ -126,13 +119,11 @@ export const TurnstileWidget = forwardRef<
   useEffect(() => {
     // Set up the global callback for when script loads
     window.onTurnstileLoad = () => {
-      console.log('[v0] Turnstile script loaded, rendering widget')
       renderWidget()
     }
 
     // If turnstile is already loaded (e.g., from cache), render immediately
     if (window.turnstile) {
-      console.log('[v0] Turnstile already available, rendering immediately')
       renderWidget()
     }
 
@@ -167,7 +158,6 @@ export const TurnstileWidget = forwardRef<
         src={TURNSTILE_SCRIPT_SRC}
         strategy="afterInteractive"
         onError={() => {
-          console.error('[v0] Turnstile script failed to load')
           setLoadError('Failed to load security verification. Please check your internet connection and refresh the page.')
           setIsLoading(false)
         }}
