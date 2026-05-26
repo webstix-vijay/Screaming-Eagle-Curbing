@@ -2,9 +2,7 @@
 
 import Script from 'next/script'
 import { useCallback, useEffect, useRef, useState } from 'react'
-
-const TURNSTILE_SITE_KEY =
-  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '0x4AAAAAACmutPDloFLjJ8s_'
+import { getTurnstileSiteKey } from '@/lib/turnstile-config'
 
 declare global {
   interface Window {
@@ -15,7 +13,7 @@ declare global {
           sitekey: string
           callback: (token: string) => void
           'expired-callback'?: () => void
-          'error-callback'?: () => void
+          'error-callback'?: (errorCode?: string) => void
           theme?: 'light' | 'dark' | 'auto'
         }
       ) => string
@@ -28,7 +26,7 @@ declare global {
 type TurnstileWidgetProps = {
   onVerify: (token: string) => void
   onExpire: () => void
-  onError: () => void
+  onError: (errorCode?: string) => void
   resetKey?: number
 }
 
@@ -50,9 +48,11 @@ export function TurnstileWidget({
       widgetIdRef.current = null
     }
 
+    const sitekey = getTurnstileSiteKey(window.location.hostname)
+
     containerRef.current.innerHTML = ''
     widgetIdRef.current = window.turnstile.render(containerRef.current, {
-      sitekey: TURNSTILE_SITE_KEY,
+      sitekey,
       theme: 'light',
       callback: onVerify,
       'expired-callback': onExpire,

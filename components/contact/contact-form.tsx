@@ -50,8 +50,14 @@ export function ContactForm() {
     setTurnstileToken(null)
   }, [])
 
-  const handleTurnstileError = useCallback(() => {
+  const handleTurnstileError = useCallback((errorCode?: string) => {
     setTurnstileToken(null)
+    if (errorCode === '110200') {
+      setCaptchaError(
+        'Security check could not load on this site address. Please use www.screamingeaglecurbing.com or contact us by phone.'
+      )
+      return
+    }
     setCaptchaError('CAPTCHA verification failed. Please try again.')
   }, [])
 

@@ -1,5 +1,13 @@
+import { getTurnstileSecretKey } from '@/lib/turnstile-config'
+
+type TurnstileVerifyResponse = {
+  success?: boolean
+  'error-codes'?: string[]
+  hostname?: string
+}
+
 export async function verifyTurnstileToken(token: string): Promise<boolean> {
-  const secret = process.env.TURNSTILE_SECRET_KEY
+  const secret = getTurnstileSecretKey(token)
   if (!secret) {
     console.error('TURNSTILE_SECRET_KEY is not configured')
     return false
@@ -14,6 +22,13 @@ export async function verifyTurnstileToken(token: string): Promise<boolean> {
     }
   )
 
-  const data = (await response.json()) as { success?: boolean }
+  const data = (await response.json()) as TurnstileVerifyResponse
+
+  if (!data.success) {
+    console.error('Turnstile verification failed:', data['error-codes'], {
+      hostname: data.hostname,
+    })
+  }
+
   return data.success === true
 }
