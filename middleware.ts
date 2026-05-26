@@ -2,10 +2,7 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { APEX_HOSTNAME, buildCanonicalUrl } from '@/lib/seo/canonical-host'
 
-/**
- * Permanent redirect: apex → www (HTTPS).
- * Ensures Turnstile, canonical URLs, and cookies use one hostname.
- */
+/** Permanent redirect: apex → www (HTTPS) for canonical URLs and SEO. */
 export function middleware(request: NextRequest) {
   const host =
     request.headers.get('x-forwarded-host')?.split(',')[0]?.trim() ||
@@ -24,9 +21,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all paths except static assets (Turnstile/contact must redirect too).
-     */
+    /* Match all paths except static assets */
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|woff2?)$).*)',
   ],
 }

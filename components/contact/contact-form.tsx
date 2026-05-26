@@ -1,11 +1,14 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
-import { TurnstileWidget } from '@/components/contact/turnstile-widget'
+import {
+  TurnstileWidget,
+  type TurnstileWidgetHandle,
+} from '@/components/contact/turnstile-widget'
 
 const FORM_ACTION_URL = '/api/contact'
 
@@ -20,10 +23,11 @@ const services = [
 
 export function ContactForm() {
   const router = useRouter()
+  const turnstileRef = useRef<TurnstileWidgetHandle>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
-  const [captchaError, setCaptchaError] = useState<string | null>(null)
-  const [turnstileResetKey, setTurnstileResetKey] = useState(0)
+  const [turnstileError, setTurnstileError] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -41,48 +45,34 @@ export function ContactForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleTurnstileVerify = useCallback((token: string) => {
+  const handleTurnstileVerify = (token: string) => {
     setTurnstileToken(token)
-    setCaptchaError(null)
-  }, [])
+    setTurnstileError(null)
+  }
 
-  const handleTurnstileExpire = useCallback(() => {
+  const handleTurnstileExpire = () => {
     setTurnstileToken(null)
-  }, [])
-
-  const handleTurnstileError = useCallback((errorCode?: string) => {
-    setTurnstileToken(null)
-    if (errorCode === '110200') {
-      const host = window.location.hostname.toLowerCase()
-      if (host === 'screamingeaglecurbing.com') {
-        window.location.replace(
-          `https://www.screamingeaglecurbing.com${window.location.pathname}${window.location.search}${window.location.hash}`
-        )
-        return
-      }
-    }
-    if (errorCode === 'script-load') {
-      setCaptchaError(
-        'Security check could not load. Disable ad blockers and refresh the page.'
-      )
-      return
-    }
-    setCaptchaError(
-      'Security verification failed. Please refresh the page and try again.'
+    setTurnstileError(
+      'Your security check expired. Please verify again before submitting.'
     )
-  }, [])
+  }
 
-  const resetTurnstile = useCallback(() => {
+  const handleTurnstileError = () => {
     setTurnstileToken(null)
-    setTurnstileResetKey((key) => key + 1)
-  }, [])
+    setTurnstileError(
+      'Security verification could not load. Please refresh the page and try again.'
+    )
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setCaptchaError(null)
+    setSubmitError(null)
+    setTurnstileError(null)
 
     if (!turnstileToken) {
-      setCaptchaError('Please complete the CAPTCHA verification.')
+      setTurnstileError(
+        'Please complete the security check before submitting the form.'
+      )
       return
     }
 
@@ -109,17 +99,21 @@ export function ContactForm() {
         error?: string
       } | null
 
-      if (response.status === 400 || response.status === 403) {
-        setCaptchaError(
-          errorData?.error ?? 'CAPTCHA verification failed. Please try again.'
-        )
-        resetTurnstile()
-        return
-      }
+      const message =
+        errorData?.error ??
+        'Unable to submit the form. Please try again or call us directly.'
 
-      console.error('Form submission failed:', response.status)
+      setSubmitError(message)
+
+      if (response.status === 403 || response.status === 400) {
+        setTurnstileToken(null)
+        turnstileRef.current?.reset()
+      }
     } catch (error) {
       console.error('Form submission error:', error)
+      setSubmitError(
+        'Unable to submit the form. Please try again or call us directly.'
+      )
     } finally {
       setIsSubmitting(false)
     }
@@ -325,34 +319,29 @@ export function ContactForm() {
           />
         </div>
 
-        {/* Turnstile CAPTCHA */}
-        <div className="pt-2 pb-1">
+        <div className="space-y-2">
           <TurnstileWidget
+            ref={turnstileRef}
             onVerify={handleTurnstileVerify}
             onExpire={handleTurnstileExpire}
             onError={handleTurnstileError}
-            resetKey={turnstileResetKey}
           />
-          {captchaError && (
-            <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-center">
-              <p className="text-sm text-red-500" role="alert">
-                {captchaError}
-              </p>
-              <button
-                type="button"
-                onClick={resetTurnstile}
-                className="text-sm font-medium text-[#1E3A8A] underline underline-offset-2 hover:text-black"
-              >
-                Retry verification
-              </button>
-            </div>
+          {turnstileError && (
+            <p className="text-sm text-red-500" role="alert">
+              {turnstileError}
+            </p>
           )}
         </div>
 
-        {/* Submit Button */}
+        {submitError && (
+          <p className="text-sm text-red-500" role="alert">
+            {submitError}
+          </p>
+        )}
+
         <Button
           type="submit"
-          disabled={isSubmitting || !turnstileToken}
+          disabled={isSubmitting}
           className="w-full bg-[#1E3A8A] text-white hover:bg-black rounded-full py-6 text-base font-semibold uppercase tracking-wide shadow-blue disabled:opacity-70 transition-colors duration-200"
         >
           {isSubmitting ? (
