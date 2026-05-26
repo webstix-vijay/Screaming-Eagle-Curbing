@@ -6,6 +6,9 @@ import { contactMetadata } from '@/lib/seo/pages'
 
 export const metadata = contactMetadata
 
+/** Avoid stale cached HTML so Turnstile always loads with current hostname/keys */
+export const dynamic = 'force-dynamic'
+
 export default function ContactPage() {
   return (
     <div className="pt-20">

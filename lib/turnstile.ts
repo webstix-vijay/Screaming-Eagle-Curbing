@@ -1,7 +1,4 @@
-import {
-  getTurnstileSecretKey,
-  isAuthorizedTurnstileHostname,
-} from '@/lib/turnstile-config'
+import { getTurnstileSecretKey } from '@/lib/turnstile-config'
 
 type TurnstileVerifyResponse = {
   success?: boolean
@@ -39,15 +36,6 @@ export async function verifyTurnstileToken(
     console.error('Turnstile verification failed:', data['error-codes'], {
       hostname: data.hostname,
     })
-    return false
-  }
-
-  if (
-    data.hostname &&
-    !token.includes('DUMMY.TOKEN') &&
-    !isAuthorizedTurnstileHostname(data.hostname)
-  ) {
-    console.error('Turnstile hostname not authorized:', data.hostname)
     return false
   }
 

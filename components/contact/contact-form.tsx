@@ -53,8 +53,17 @@ export function ContactForm() {
   const handleTurnstileError = useCallback((errorCode?: string) => {
     setTurnstileToken(null)
     if (errorCode === '110200') {
+      const host = window.location.hostname.toLowerCase()
+      if (host === 'screamingeaglecurbing.com') {
+        window.location.replace(
+          `https://www.screamingeaglecurbing.com${window.location.pathname}${window.location.search}${window.location.hash}`
+        )
+        return
+      }
+    }
+    if (errorCode === 'script-load') {
       setCaptchaError(
-        'Security verification is loading. If this continues, refresh the page.'
+        'Security check could not load. Disable ad blockers and refresh the page.'
       )
       return
     }
@@ -117,16 +126,15 @@ export function ContactForm() {
   }
 
   return (
-    <motion.div
-      id="contact-form"
-      className="scroll-mt-24"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <h2 className="font-[var(--font-montserrat)] font-bold text-2xl text-[#0F172A] mb-6">
+    <div id="contact-form" className="scroll-mt-24">
+      <motion.h2
+        className="font-[var(--font-montserrat)] font-bold text-2xl text-[#0F172A] mb-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         Tell Us About Your Project
-      </h2>
+      </motion.h2>
       <form
         action={FORM_ACTION_URL}
         method="POST"
@@ -362,6 +370,6 @@ export function ContactForm() {
           We respect your privacy and will never share your information.
         </p>
       </form>
-    </motion.div>
+    </div>
   )
 }

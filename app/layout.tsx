@@ -68,6 +68,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${montserrat.variable} ${inter.variable} bg-background`}>
+      <head>
+        <link rel="preconnect" href="https://challenges.cloudflare.com" />
+      </head>
       <body className="font-sans antialiased">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <Header />

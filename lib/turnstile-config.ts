@@ -3,18 +3,29 @@ import {
   CANONICAL_HOSTNAME,
 } from '@/lib/seo/canonical-host'
 
+/** Production widget (Screaming Eagle Curbing — both apex and www in Cloudflare hostnames) */
+export const TURNSTILE_SITE_KEY = '0x4AAAAAACmutPDloFLjJ8s_'
+
 /** Cloudflare dummy keys — work on any hostname (localhost, Vercel previews) */
 export const TURNSTILE_TEST_SITE_KEY = '1x00000000000000000000AA'
 export const TURNSTILE_TEST_SECRET_KEY =
   '1x0000000000000000000000000000000AA'
 
-const PRODUCTION_SITE_KEY = '0x4AAAAAACmutPDloFLjJ8s_'
-
-/** Hostnames that must be listed in Cloudflare Turnstile → Hostname Management */
 export const TURNSTILE_AUTHORIZED_HOSTNAMES = [
   APEX_HOSTNAME,
   CANONICAL_HOSTNAME,
 ] as const
+
+function resolveEnvKey(
+  value: string | undefined,
+  fallback: string
+): string {
+  const trimmed = value?.trim()
+  if (trimmed && trimmed.length > 10) {
+    return trimmed
+  }
+  return fallback
+}
 
 export function shouldUseTurnstileTestKeys(hostname: string): boolean {
   const host = hostname.toLowerCase()
@@ -31,7 +42,10 @@ export function getTurnstileSiteKey(hostname: string): string {
     return TURNSTILE_TEST_SITE_KEY
   }
 
-  return process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? PRODUCTION_SITE_KEY
+  return resolveEnvKey(
+    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+    TURNSTILE_SITE_KEY
+  )
 }
 
 export function getTurnstileSecretKey(token: string): string | null {
@@ -39,11 +53,10 @@ export function getTurnstileSecretKey(token: string): string | null {
     return TURNSTILE_TEST_SECRET_KEY
   }
 
-  const secret = process.env.TURNSTILE_SECRET_KEY
-  return secret ?? null
-}
+  const fromEnv = process.env.TURNSTILE_SECRET_KEY?.trim()
+  if (fromEnv && fromEnv.length > 10) {
+    return fromEnv
+  }
 
-export function isAuthorizedTurnstileHostname(hostname: string): boolean {
-  const host = hostname.toLowerCase()
-  return TURNSTILE_AUTHORIZED_HOSTNAMES.some((allowed) => allowed === host)
+  return null
 }
