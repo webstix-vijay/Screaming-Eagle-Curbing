@@ -142,8 +142,9 @@ export const TurnstileWidget = forwardRef<
         },
         'error-callback': (errorCode) => {
           // Error code 110200 means domain not authorized in Turnstile settings
-          const errorMessage = errorCode === '110200' || errorCode === 110200
-            ? 'Security verification is not configured for this domain. Please contact us by phone.'
+          const isDomainError = errorCode === '110200' || errorCode === 110200
+          const errorMessage = isDomainError
+            ? 'domain-error'
             : 'Security verification encountered an error. Please refresh the page.'
           setLoadError(errorMessage)
           callbacksRef.current.onError?.()
@@ -225,7 +226,19 @@ export const TurnstileWidget = forwardRef<
             Loading security verification...
           </div>
         )}
-        {loadError && (
+        {loadError && loadError === 'domain-error' && (
+          <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+            <p className="text-sm text-amber-800" role="status">
+              Security verification is temporarily unavailable. Please call us directly at{' '}
+              <a href="tel:+17158967448" className="font-semibold underline">(715) 896-7448</a>{' '}
+              or email{' '}
+              <a href="mailto:screamingeaglecurbing@gmail.com" className="font-semibold underline">
+                screamingeaglecurbing@gmail.com
+              </a>
+            </p>
+          </div>
+        )}
+        {loadError && loadError !== 'domain-error' && (
           <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
             <p className="text-sm text-red-600" role="alert">
               {loadError}

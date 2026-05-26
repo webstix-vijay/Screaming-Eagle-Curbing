@@ -59,9 +59,7 @@ export function ContactForm() {
 
   const handleTurnstileError = () => {
     setTurnstileToken(null)
-    setTurnstileError(
-      'Security verification could not load. Please refresh the page and try again.'
-    )
+    // Don't set error here - TurnstileWidget already shows error UI
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
