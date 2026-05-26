@@ -1,27 +1,29 @@
-/** Cloudflare dummy keys — work on any hostname (localhost, Vercel previews, etc.) */
+import {
+  APEX_HOSTNAME,
+  CANONICAL_HOSTNAME,
+} from '@/lib/seo/canonical-host'
+
+/** Cloudflare dummy keys — work on any hostname (localhost, Vercel previews) */
 export const TURNSTILE_TEST_SITE_KEY = '1x00000000000000000000AA'
 export const TURNSTILE_TEST_SECRET_KEY =
   '1x0000000000000000000000000000000AA'
 
 const PRODUCTION_SITE_KEY = '0x4AAAAAACmutPDloFLjJ8s_'
 
-/** Production hostnames allowed in the Cloudflare Turnstile widget settings */
-export const TURNSTILE_PRODUCTION_HOSTNAMES = [
-  'screamingeaglecurbing.com',
-  'www.screamingeaglecurbing.com',
+/** Hostnames that must be listed in Cloudflare Turnstile → Hostname Management */
+export const TURNSTILE_AUTHORIZED_HOSTNAMES = [
+  APEX_HOSTNAME,
+  CANONICAL_HOSTNAME,
 ] as const
 
 export function shouldUseTurnstileTestKeys(hostname: string): boolean {
-  if (
-    hostname === 'localhost' ||
-    hostname === '127.0.0.1' ||
-    hostname === '[::1]'
-  ) {
+  const host = hostname.toLowerCase()
+
+  if (host === 'localhost' || host === '127.0.0.1' || host === '[::1]') {
     return true
   }
 
-  // Vercel preview / deployment URLs are not in the production widget hostname list
-  return hostname.endsWith('.vercel.app')
+  return host.endsWith('.vercel.app')
 }
 
 export function getTurnstileSiteKey(hostname: string): string {
@@ -41,6 +43,7 @@ export function getTurnstileSecretKey(token: string): string | null {
   return secret ?? null
 }
 
-export function isDummyTurnstileToken(token: string): boolean {
-  return token.includes('DUMMY.TOKEN')
+export function isAuthorizedTurnstileHostname(hostname: string): boolean {
+  const host = hostname.toLowerCase()
+  return TURNSTILE_AUTHORIZED_HOSTNAMES.some((allowed) => allowed === host)
 }

@@ -1,4 +1,7 @@
-import { getTurnstileSecretKey } from '@/lib/turnstile-config'
+import {
+  getTurnstileSecretKey,
+  isAuthorizedTurnstileHostname,
+} from '@/lib/turnstile-config'
 
 type TurnstileVerifyResponse = {
   success?: boolean
@@ -6,7 +9,10 @@ type TurnstileVerifyResponse = {
   hostname?: string
 }
 
-export async function verifyTurnstileToken(token: string): Promise<boolean> {
+export async function verifyTurnstileToken(
+  token: string,
+  remoteIp?: string | null
+): Promise<boolean> {
   const secret = getTurnstileSecretKey(token)
   if (!secret) {
     console.error('TURNSTILE_SECRET_KEY is not configured')
@@ -18,7 +24,12 @@ export async function verifyTurnstileToken(token: string): Promise<boolean> {
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ secret, response: token }),
+      body: JSON.stringify({
+        secret,
+        response: token,
+        ...(remoteIp ? { remoteip: remoteIp } : {}),
+      }),
+      cache: 'no-store',
     }
   )
 
@@ -28,7 +39,25 @@ export async function verifyTurnstileToken(token: string): Promise<boolean> {
     console.error('Turnstile verification failed:', data['error-codes'], {
       hostname: data.hostname,
     })
+    return false
   }
 
-  return data.success === true
+  if (
+    data.hostname &&
+    !token.includes('DUMMY.TOKEN') &&
+    !isAuthorizedTurnstileHostname(data.hostname)
+  ) {
+    console.error('Turnstile hostname not authorized:', data.hostname)
+    return false
+  }
+
+  return true
+}
+
+export function getClientIpFromRequest(request: Request): string | null {
+  const forwarded = request.headers.get('x-forwarded-for')
+  if (forwarded) {
+    return forwarded.split(',')[0]?.trim() ?? null
+  }
+  return request.headers.get('x-real-ip')
 }

@@ -54,11 +54,13 @@ export function ContactForm() {
     setTurnstileToken(null)
     if (errorCode === '110200') {
       setCaptchaError(
-        'Security check could not load on this site address. Please use www.screamingeaglecurbing.com or contact us by phone.'
+        'Security verification is loading. If this continues, refresh the page.'
       )
       return
     }
-    setCaptchaError('CAPTCHA verification failed. Please try again.')
+    setCaptchaError(
+      'Security verification failed. Please refresh the page and try again.'
+    )
   }, [])
 
   const resetTurnstile = useCallback(() => {
@@ -324,9 +326,18 @@ export function ContactForm() {
             resetKey={turnstileResetKey}
           />
           {captchaError && (
-            <p className="mt-2 text-sm text-red-500" role="alert">
-              {captchaError}
-            </p>
+            <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-center">
+              <p className="text-sm text-red-500" role="alert">
+                {captchaError}
+              </p>
+              <button
+                type="button"
+                onClick={resetTurnstile}
+                className="text-sm font-medium text-[#1E3A8A] underline underline-offset-2 hover:text-black"
+              >
+                Retry verification
+              </button>
+            </div>
           )}
         </div>
 
