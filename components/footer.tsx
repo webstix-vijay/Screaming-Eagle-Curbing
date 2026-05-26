@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Facebook, Phone, Mail, Clock, MapPin } from 'lucide-react'
-import { ALL_SERVICE_LINKS } from '@/lib/seo/services-config'
 import { IMAGE_SIZES } from '@/lib/seo/image-sizes'
 
 const quickLinks = [
@@ -10,14 +9,6 @@ const quickLinks = [
   { name: 'Services', href: '/services' },
   { name: 'Gallery', href: '/gallery' },
   { name: 'Contact', href: '/contact' },
-]
-
-const services = [
-  { name: 'Decorative Curbing', href: '/services/decorative-curbing' },
-  { name: 'Rock & Mulch', href: '/services/rock-mulch' },
-  { name: 'Retaining Walls', href: '/services/retaining-walls' },
-  { name: 'Christmas Lights', href: '/services/christmas-lights' },
-  { name: 'Seeding', href: '/services/seeding' },
 ]
 
 const serviceAreas = [
@@ -81,21 +72,6 @@ export function Footer() {
             <ul className="space-y-3.5">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-[#94A3B8] hover:text-white text-sm transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <p className="font-[var(--font-montserrat)] font-semibold text-white text-sm mt-6 mb-3">
-              Our Services
-            </p>
-            <ul className="space-y-2.5">
-              {ALL_SERVICE_LINKS.map((link) => (
-                <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-[#94A3B8] hover:text-white text-sm transition-colors"
