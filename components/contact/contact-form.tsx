@@ -1,10 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { Loader2 } from 'lucide-react'
+import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
+import { Turnstile } from '@/components/turnstile'
 
 const FORM_ACTION_URL = '/api/contact'
 
@@ -17,10 +18,15 @@ const services = [
   'Multiple Services',
 ]
 
+type TurnstileStatus = 'idle' | 'verified' | 'expired' | 'error'
+
 export function ContactForm() {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+  const [turnstileStatus, setTurnstileStatus] = useState<TurnstileStatus>('idle')
+  const formRef = useRef<HTMLFormElement>(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -38,13 +44,43 @@ export function ContactForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
+  const handleTurnstileVerify = useCallback((token: string) => {
+    setTurnstileToken(token)
+    setTurnstileStatus('verified')
+    setSubmitError(null)
+  }, [])
+
+  const handleTurnstileExpire = useCallback(() => {
+    setTurnstileToken(null)
+    setTurnstileStatus('expired')
+  }, [])
+
+  const handleTurnstileError = useCallback(() => {
+    setTurnstileToken(null)
+    setTurnstileStatus('error')
+  }, [])
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setSubmitError(null)
+
+    // Check Turnstile verification
+    if (!turnstileToken) {
+      if (turnstileStatus === 'expired') {
+        setSubmitError('Security verification has expired. Please complete the verification again.')
+      } else if (turnstileStatus === 'error') {
+        setSubmitError('Security verification failed. Please refresh the page and try again.')
+      } else {
+        setSubmitError('Please complete the security verification before submitting.')
+      }
+      return
+    }
+
     setIsSubmitting(true)
 
     try {
       const submitData = new FormData(e.currentTarget)
+      submitData.append('cf-turnstile-response', turnstileToken)
 
       const response = await fetch(FORM_ACTION_URL, {
         method: 'POST',
@@ -61,13 +97,24 @@ export function ContactForm() {
 
       const errorData = (await response.json().catch(() => null)) as {
         error?: string
+        code?: string
       } | null
 
-      const message =
-        errorData?.error ??
-        'Unable to submit the form. Please try again or call us directly.'
-
-      setSubmitError(message)
+      // Handle specific Turnstile errors
+      if (errorData?.code === 'TURNSTILE_VERIFICATION_FAILED') {
+        setSubmitError('Security verification failed. Please refresh the page and try again.')
+        setTurnstileToken(null)
+        setTurnstileStatus('error')
+      } else if (errorData?.code === 'TURNSTILE_TOKEN_MISSING') {
+        setSubmitError('Security verification is required. Please complete the CAPTCHA.')
+        setTurnstileToken(null)
+        setTurnstileStatus('idle')
+      } else {
+        const message =
+          errorData?.error ??
+          'Unable to submit the form. Please try again or call us directly.'
+        setSubmitError(message)
+      }
     } catch (error) {
       console.error('Form submission error:', error)
       setSubmitError(
@@ -75,6 +122,34 @@ export function ContactForm() {
       )
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  const getTurnstileStatusMessage = () => {
+    switch (turnstileStatus) {
+      case 'verified':
+        return (
+          <span className="flex items-center gap-2 text-sm text-green-600">
+            <CheckCircle2 className="w-4 h-4" />
+            Verification complete
+          </span>
+        )
+      case 'expired':
+        return (
+          <span className="flex items-center gap-2 text-sm text-amber-600">
+            <AlertCircle className="w-4 h-4" />
+            Verification expired - please verify again
+          </span>
+        )
+      case 'error':
+        return (
+          <span className="flex items-center gap-2 text-sm text-red-600">
+            <AlertCircle className="w-4 h-4" />
+            Verification failed - please refresh and try again
+          </span>
+        )
+      default:
+        return null
     }
   }
 
@@ -89,6 +164,7 @@ export function ContactForm() {
         Tell Us About Your Project
       </motion.h2>
       <form
+        ref={formRef}
         action={FORM_ACTION_URL}
         method="POST"
         onSubmit={handleSubmit}
@@ -278,6 +354,21 @@ export function ContactForm() {
           />
         </div>
 
+        {/* Cloudflare Turnstile CAPTCHA */}
+        <div className="space-y-2">
+          <label className="block text-sm font-medium text-[#0F172A]">
+            Security Verification <span className="text-red-500">*</span>
+          </label>
+          <Turnstile
+            onVerify={handleTurnstileVerify}
+            onExpire={handleTurnstileExpire}
+            onError={handleTurnstileError}
+            theme="light"
+            className="flex justify-start"
+          />
+          {getTurnstileStatusMessage()}
+        </div>
+
         {submitError && (
           <p className="text-sm text-red-500" role="alert">
             {submitError}
@@ -286,7 +377,7 @@ export function ContactForm() {
 
         <Button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || !turnstileToken}
           className="w-full bg-[#1E3A8A] text-white hover:bg-black rounded-full py-6 text-base font-semibold uppercase tracking-wide shadow-blue disabled:opacity-70 transition-colors duration-200"
         >
           {isSubmitting ? (
