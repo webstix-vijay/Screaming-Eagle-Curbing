@@ -135,8 +135,17 @@ export function ServiceArea() {
                 </div>
                 <div>
                   <p className="font-semibold text-[#0F172A]">Hours</p>
-                  <p className="text-[#64748B]">Monday - Saturday: 7:00 AM - 4:00 PM</p>
-                  <p className="text-[#64748B]">Sunday: Closed</p>
+                  <div className="space-y-3">
+                    <div className="space-y-1">
+                      <p className="text-[#64748B]">Monday - Friday</p>
+                      <p className="text-[#64748B]">7:00 AM - 5:00 PM</p>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-[#64748B]">Saturday</p>
+                      <p className="text-[#64748B]">7:00 AM - 12:00 PM</p>
+                    </div>
+                    <p className="text-[#64748B]">Sunday: Closed</p>
+                  </div>
                 </div>
               </div>
             </div>

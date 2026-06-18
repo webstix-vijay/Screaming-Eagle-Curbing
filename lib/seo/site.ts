@@ -9,6 +9,7 @@ export const SITE_NAME = 'Screaming Eagle Curbing'
 export const SITE_TAGLINE = 'Decorative Concrete Curbing in La Crosse, WI'
 export const SITE_PHONE = '+1-715-896-7448'
 export const SITE_EMAIL = 'screamingeaglecurbing@outlook.com'
+export const SITE_MAPS_URL = 'https://maps.app.goo.gl/1P62C2KzcLbjCNVMA'
 export const SITE_ADDRESS = {
   streetAddress: 'Holmen',
   addressLocality: 'Holmen',

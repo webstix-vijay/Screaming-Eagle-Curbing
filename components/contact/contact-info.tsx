@@ -2,9 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail, Clock, Facebook } from 'lucide-react'
-
-const GOOGLE_MAPS_URL =
-  'https://www.google.com/maps/search/?api=1&query=Holmen%2C+WI+54636'
+import { SITE_MAPS_URL } from '@/lib/seo/site'
 
 export function ContactInfo() {
   return (
@@ -19,7 +17,27 @@ export function ContactInfo() {
       </h2>
 
       <div className="space-y-6">
-        <div className="flex items-center gap-4 min-w-0">
+        <div className="flex items-start gap-4 min-w-0">
+          <div className="w-12 h-12 rounded-full bg-[#1E3A8A]/10 flex items-center justify-center shrink-0">
+            <MapPin className="w-6 h-6 text-[#1E3A8A]" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="font-semibold text-[#0F172A]">Location</p>
+            <a
+              href={SITE_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#64748B] hover:text-[#1E3A8A] hover:underline transition-colors"
+            >
+              Holmen, WI 54636
+            </a>
+            <p className="text-[#64748B] text-sm mt-1">
+              Serving La Crosse & the Coulee Region
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-4 min-w-0">
           <div className="w-12 h-12 rounded-full bg-[#1E3A8A]/10 flex items-center justify-center shrink-0">
             <Phone className="w-6 h-6 text-[#1E3A8A]" />
           </div>
@@ -35,7 +53,7 @@ export function ContactInfo() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 min-w-0">
+        <div className="flex items-start gap-4 min-w-0">
           <div className="w-12 h-12 rounded-full bg-[#1E3A8A]/10 flex items-center justify-center shrink-0">
             <Mail className="w-6 h-6 text-[#1E3A8A]" />
           </div>
@@ -51,34 +69,23 @@ export function ContactInfo() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 min-w-0">
-          <div className="w-12 h-12 rounded-full bg-[#1E3A8A]/10 flex items-center justify-center shrink-0">
-            <MapPin className="w-6 h-6 text-[#1E3A8A]" />
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="font-semibold text-[#0F172A]">Location</p>
-            <a
-              href={GOOGLE_MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#64748B] hover:text-[#1E3A8A] hover:underline transition-colors"
-            >
-              Holmen, WI 54636
-            </a>
-            <p className="text-[#64748B] text-sm mt-1">
-              Serving La Crosse & the Coulee Region
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-4 min-w-0">
+        <div className="flex items-start gap-4 min-w-0">
           <div className="w-12 h-12 rounded-full bg-[#1E3A8A]/10 flex items-center justify-center shrink-0">
             <Clock className="w-6 h-6 text-[#1E3A8A]" />
           </div>
           <div className="min-w-0 flex-1">
             <p className="font-semibold text-[#0F172A]">Business Hours</p>
-            <p className="text-[#64748B]">Monday - Saturday</p>
-            <p className="text-[#64748B]">7:00 AM - 4:00 PM</p>
+            <div className="space-y-3">
+              <div className="space-y-1">
+                <p className="text-[#64748B]">Monday - Friday</p>
+                <p className="text-[#64748B]">7:00 AM - 5:00 PM</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[#64748B]">Saturday</p>
+                <p className="text-[#64748B]">7:00 AM - 12:00 PM</p>
+              </div>
+              <p className="text-[#64748B]">Sunday: Closed</p>
+            </div>
           </div>
         </div>
       </div>

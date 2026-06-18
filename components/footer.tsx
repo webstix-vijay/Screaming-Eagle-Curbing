@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Facebook, Phone, Mail, Clock, MapPin } from 'lucide-react'
 import { IMAGE_SIZES } from '@/lib/seo/image-sizes'
+import { SITE_MAPS_URL } from '@/lib/seo/site'
 
 const quickLinks = [
   { name: 'Home', href: '/' },
@@ -19,9 +20,6 @@ const serviceAreas = [
   'La Crescent',
   'Coulee Region',
 ]
-
-const GOOGLE_MAPS_URL =
-  'https://www.google.com/maps/search/?api=1&query=Holmen%2C+WI+54636'
 
 const footerColumnClass = 'flex flex-col min-w-0'
 const footerHeadingClass =
@@ -89,7 +87,7 @@ export function Footer() {
             <ul className="space-y-4">
               <li>
                 <a
-                  href={GOOGLE_MAPS_URL}
+                  href={SITE_MAPS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-3 min-w-0 text-[#94A3B8] hover:text-white transition-colors"
@@ -125,7 +123,17 @@ export function Footer() {
               <li className="flex items-start gap-3 min-w-0">
                 <Clock className="w-5 h-5 text-[#1E3A8A] shrink-0 mt-0.5" />
                 <span className="text-[#94A3B8] text-sm min-w-0 flex-1 leading-relaxed">
-                  Mon - Sat: 7:00 AM - 4:00 PM
+                  <span className="block space-y-3">
+                    <span className="block space-y-1">
+                      <span className="block">Mon - Fri</span>
+                      <span className="block whitespace-nowrap">7:00 AM - 5:00 PM</span>
+                    </span>
+                    <span className="block space-y-1">
+                      <span className="block">Sat</span>
+                      <span className="block whitespace-nowrap">7:00 AM - 12:00 PM</span>
+                    </span>
+                    <span className="block whitespace-nowrap">Sun: Closed</span>
+                  </span>
                 </span>
               </li>
             </ul>
